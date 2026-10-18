@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -20,6 +21,7 @@
       <a href="#tentang">Tentang</a>
       <a href="#kebiasaan">Kebiasaan</a>
       <a href="#skill">Skill</a>
+      <a href="#impian">Impian</a>
       <a href="#kontak">Kontak</a>
     </nav>
   </header>
@@ -41,7 +43,7 @@
         </div>
       </div>
       <div class="hero-card reveal">
-        <div class="avatar">RA</div>
+        <div class="avatar"><img src="foto-saya.webp" alt="M. Rizki Amalludin" /></div>
         <div class="status"><span class="dot"></span> Open to chat</div>
         <ul class="quick">
           <li><strong>Role</strong><span>Pelajar / Mahasiswa</span></li>
@@ -88,6 +90,16 @@
           </p>
         </div>
       </div>
+
+      <div class="values reveal">
+        <h3 class="values-title">Nilai yang saya pegang</h3>
+        <div class="values-grid">
+          <span>📚 Terus belajar</span>
+          <span>✍️ Berani berkarya</span>
+          <span>🌱 Bertumbuh</span>
+          <span>🤝 Bermanfaat</span>
+        </div>
+      </div>
     </section>
 
     <!-- KEBIASAAN -->
@@ -124,6 +136,11 @@
           <h3>Menulis</h3>
           <p>Menciptakan puisi dan cerpen sebagai pelampiasan kreatif.</p>
         </article>
+        <article class="habit reveal">
+          <div class="habit-icon">📚</div>
+          <h3>Membaca &amp; belajar</h3>
+          <p>Mengumpulkan pengetahuan baru biar bisa melihat sesuatu dari sudut pandang berbeda.</p>
+        </article>
       </div>
     </section>
 
@@ -158,6 +175,28 @@
       </div>
     </section>
 
+    <!-- IMPIAN -->
+    <section id="impian" class="section">
+      <h2 class="section-title reveal">Arah yang <span>Ingin Dituju</span></h2>
+      <div class="dream-grid">
+        <article class="dream reveal">
+          <span class="check">✓</span>
+          <div>
+            <h3>Terus mengembangkan diri</h3>
+            <p>Melatih disiplin, pengetahuan, dan keterampilan sedikit demi sedikit.</p>
+          </div>
+        </article>
+        <article class="dream reveal">
+          <span class="check">✓</span>
+          <div>
+            <h3>Memberi manfaat</h3>
+            <p>Menggunakan kemampuan yang saya punya untuk membantu sesama.</p>
+          </div>
+        </article>
+      </div>
+      <p class="dream-tagline reveal">“Tidak harus langsung hebat. Yang penting, terus melangkah.”</p>
+    </section>
+
     <!-- KONTAK -->
     <section id="kontak" class="section">
       <h2 class="section-title reveal">Mari <span>Terhubung</span></h2>
@@ -167,6 +206,16 @@
           <a class="btn btn-primary" href="mailto:rizkiamalludin99@gmail.com">✉️ rizkiamalludin99@gmail.com</a>
           <a class="btn btn-ghost" href="https://instagram.com/rizki_amalludin.exe" target="_blank" rel="noopener">📸 @rizki_amalludin.exe</a>
         </div>
+
+        <form class="contact-form" action="https://formsubmit.co/rizkiamalludin99@gmail.com" method="POST">
+          <div class="form-row">
+            <input type="text" name="nama" placeholder="Nama" required />
+            <input type="email" name="email" placeholder="Email" required />
+          </div>
+          <textarea name="pesan" rows="4" placeholder="Tulis pesanmu..." required></textarea>
+          <p class="form-note">Jangan masukkan kata sandi atau informasi pribadi yang sensitif.</p>
+          <button class="btn btn-primary" type="submit">Kirim pesan ↗</button>
+        </form>
       </div>
     </section>
   </main>
