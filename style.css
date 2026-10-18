@@ -340,32 +340,6 @@ main { max-width: 1140px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 40px); }
   font-size: 1.02rem;
 }
 
-/* Form kontak */
-.contact-form { margin-top: 34px; max-width: 620px; margin-inline: auto; text-align: left; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  padding: 13px 16px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: rgba(7, 7, 13, 0.6);
-  color: var(--text);
-  font: inherit;
-  font-size: 0.95rem;
-  resize: vertical;
-}
-.contact-form input:focus,
-.contact-form textarea:focus {
-  outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(124, 92, 255, 0.25);
-}
-.contact-form textarea { margin-bottom: 10px; }
-.form-note { color: var(--muted); font-size: 0.82rem; margin-bottom: 16px; }
-.contact-form .btn { border: none; cursor: pointer; }
-@media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
-
 /* Reveal animation */
 .reveal {
   opacity: 0;
