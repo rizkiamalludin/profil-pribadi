@@ -40,8 +40,27 @@ typeLoop();
 const c=document.getElementById('starfield'),ctx=c&&c.getContext('2d');if(ctx&&!reduced){let w,h,stars=[];function resize(){w=c.width=innerWidth*devicePixelRatio;h=c.height=innerHeight*devicePixelRatio;stars=Array.from({length:Math.min(130,Math.floor(innerWidth/8))},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.2+.3,a:Math.random(),v:Math.random()*.006+.001}))}function draw(){ctx.clearRect(0,0,w,h);stars.forEach(p=>{p.a+=p.v;if(p.a>1||p.a<.15)p.v*=-1;ctx.globalAlpha=p.a;ctx.fillStyle='#dbeafe';ctx.beginPath();ctx.arc(p.x,p.y,p.r*devicePixelRatio,0,7);ctx.fill()});requestAnimationFrame(draw)}resize();addEventListener('resize',resize);draw()}
 const card=document.getElementById('id-card-3d');
 if(card){
-  let dragging=false,startX=0,startY=0,baseX=0,baseY=0,offsetX=0,offsetY=0;
-  const render=(tiltX=0,tiltY=0)=>{card.style.transform='translate3d('+offsetX+'px,'+offsetY+'px,0) perspective(900px) rotateX('+tiltX+'deg) rotateY('+tiltY+'deg)'};
+  const stage=card.closest('.hero');
+  const ns='http://www.w3.org/2000/svg';
+  const rope=document.createElementNS(ns,'svg');
+  rope.setAttribute('class','lanyard-rope');rope.setAttribute('aria-hidden','true');
+  rope.innerHTML='<path class="rope-shadow"/><path class="rope-main"/><path class="rope-highlight"/>';
+  stage.insertBefore(rope,card);
+  const shadow=rope.querySelector('.rope-shadow'),main=rope.querySelector('.rope-main'),highlight=rope.querySelector('.rope-highlight');
+  let anchor=null,dragging=false,startX=0,startY=0,baseX=0,baseY=0,offsetX=0,offsetY=0;
+  function updateRope(){
+    const sr=stage.getBoundingClientRect(),cr=card.getBoundingClientRect();
+    rope.setAttribute('viewBox','0 0 '+sr.width+' '+sr.height);
+    rope.setAttribute('width',sr.width);rope.setAttribute('height',sr.height);
+    const end={x:cr.left-sr.left+cr.width*.5,y:cr.top-sr.top+5};
+    if(!anchor)anchor={x:end.x,y:end.y-112};
+    const dx=end.x-anchor.x,dy=end.y-anchor.y;
+    const sway=Math.max(-65,Math.min(65,dx*.48));
+    const d='M '+anchor.x+' '+anchor.y+' C '+(anchor.x+sway)+' '+(anchor.y+Math.max(20,dy*.35))+' '+(end.x-sway*.35)+' '+(end.y-Math.max(12,dy*.2))+' '+end.x+' '+end.y;
+    shadow.setAttribute('d',d);main.setAttribute('d',d);highlight.setAttribute('d',d);
+  }
+  const render=(tiltX=0,tiltY=0)=>{card.style.transform='translate3d('+offsetX+'px,'+offsetY+'px,0) perspective(900px) rotateX('+tiltX+'deg) rotateY('+tiltY+'deg)';requestAnimationFrame(updateRope)};
+  requestAnimationFrame(updateRope);
   card.addEventListener('pointerdown',e=>{
     if(e.button!==0 && e.pointerType==='mouse')return;
     dragging=true;startX=e.clientX;startY=e.clientY;baseX=offsetX;baseY=offsetY;
@@ -59,6 +78,7 @@ if(card){
   });
   const release=e=>{if(!dragging)return;dragging=false;card.classList.remove('is-dragging');if(card.hasPointerCapture(e.pointerId))card.releasePointerCapture(e.pointerId);render()};
   card.addEventListener('pointerup',release);card.addEventListener('pointercancel',release);
+  window.addEventListener('resize',()=>{anchor=null;updateRope()});
 }
 document.querySelectorAll('.filter-btn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filter-btn').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.project-card').forEach(c=>c.hidden=b.dataset.filter!=='all'&&c.dataset.category!==b.dataset.filter)}));
 })();
