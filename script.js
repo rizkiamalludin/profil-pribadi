@@ -38,7 +38,28 @@ function typeLoop() {
 typeLoop();
 (function(){const screen=document.getElementById('loading-screen'),bar=document.getElementById('loader-bar'),pct=document.getElementById('loader-percent');let n=0;const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;function load(){n=Math.min(100,n+(reduced?100:3));bar.style.width=n+'%';pct.textContent=n+'%';if(n<100)setTimeout(load,35);else setTimeout(()=>screen.classList.add('done'),250)}load();
 const c=document.getElementById('starfield'),ctx=c&&c.getContext('2d');if(ctx&&!reduced){let w,h,stars=[];function resize(){w=c.width=innerWidth*devicePixelRatio;h=c.height=innerHeight*devicePixelRatio;stars=Array.from({length:Math.min(130,Math.floor(innerWidth/8))},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.2+.3,a:Math.random(),v:Math.random()*.006+.001}))}function draw(){ctx.clearRect(0,0,w,h);stars.forEach(p=>{p.a+=p.v;if(p.a>1||p.a<.15)p.v*=-1;ctx.globalAlpha=p.a;ctx.fillStyle='#dbeafe';ctx.beginPath();ctx.arc(p.x,p.y,p.r*devicePixelRatio,0,7);ctx.fill()});requestAnimationFrame(draw)}resize();addEventListener('resize',resize);draw()}
-const card=document.getElementById('id-card-3d');if(card&&!reduced){card.addEventListener('pointermove',e=>{const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.transform='perspective(900px) rotateX('+(-y*10)+'deg) rotateY('+(x*12)+'deg)' });card.addEventListener('pointerleave',()=>card.style.transform='perspective(900px) rotateX(0) rotateY(0)')}
+const card=document.getElementById('id-card-3d');
+if(card){
+  let dragging=false,startX=0,startY=0,baseX=0,baseY=0,offsetX=0,offsetY=0;
+  const render=(tiltX=0,tiltY=0)=>{card.style.transform='translate3d('+offsetX+'px,'+offsetY+'px,0) perspective(900px) rotateX('+tiltX+'deg) rotateY('+tiltY+'deg)'};
+  card.addEventListener('pointerdown',e=>{
+    if(e.button!==0 && e.pointerType==='mouse')return;
+    dragging=true;startX=e.clientX;startY=e.clientY;baseX=offsetX;baseY=offsetY;
+    card.classList.add('is-dragging');card.setPointerCapture(e.pointerId);
+  });
+  card.addEventListener('pointermove',e=>{
+    if(dragging){
+      offsetX=Math.max(-240,Math.min(240,baseX+e.clientX-startX));
+      offsetY=Math.max(-150,Math.min(150,baseY+e.clientY-startY));
+      render(0,0);
+    }else if(!reduced){
+      const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+      render(-y*7,x*9);
+    }
+  });
+  const release=e=>{if(!dragging)return;dragging=false;card.classList.remove('is-dragging');if(card.hasPointerCapture(e.pointerId))card.releasePointerCapture(e.pointerId);render()};
+  card.addEventListener('pointerup',release);card.addEventListener('pointercancel',release);
+}
 document.querySelectorAll('.filter-btn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filter-btn').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.project-card').forEach(c=>c.hidden=b.dataset.filter!=='all'&&c.dataset.category!==b.dataset.filter)}));
 })();
 
