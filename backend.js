@@ -193,10 +193,10 @@
       const button=form.querySelector("button[type=submit]");if(button)button.disabled=true;
       showStatus(statusSelector,"Mengirim...");
       try{
-        await sendPublic({type:kind,...buildPayload(new FormData(form))});
+        const result=await sendPublic({type:kind,...buildPayload(new FormData(form))});
         form.reset();
         const lang=document.documentElement.lang==="en"?"en":"id";
-        const message=kind==="contact"?language[lang].sentContact:language[lang].pending;
+        const message=kind==="contact"?language[lang].sentContact:(result.status==="approved"?(lang==="en"?"Your message is now visible.":"Pesan berhasil ditampilkan."):(lang==="en"?"Your message is awaiting review.":"Pesan menunggu pemeriksaan."));
         showStatus(statusSelector,message);
         if(kind==="guestbook")await loadGuestbook();
         if(kind==="comment")await loadComments();
@@ -210,9 +210,9 @@
     setLanguage(saved);
     const toggle=$("#language-toggle");
     if(toggle)toggle.addEventListener("click",()=>setLanguage(document.documentElement.lang==="id"?"en":"id"));
-    bindForm("contact-form","contact",f=>({name:f.get("name"),email:f.get("email"),subject:f.get("subject"),message:f.get("message")}),"#contact-status");
-    bindForm("guestbook-form","guestbook",f=>({nickname:f.get("nickname"),message:f.get("message")}),"#guestbook-status");
-    bindForm("comment-form","comment",f=>({content_slug:"home",nickname:f.get("nickname"),message:f.get("message")}),"#comment-status");
+    bindForm("contact-form","contact",f=>({name:f.get("name"),email:f.get("email"),subject:f.get("subject"),message:f.get("message"),website:f.get("website")}),"#contact-status");
+    bindForm("guestbook-form","guestbook",f=>({nickname:f.get("nickname"),message:f.get("message"),website:f.get("website")}),"#guestbook-status");
+    bindForm("comment-form","comment",f=>({content_slug:"home",nickname:f.get("nickname"),message:f.get("message"),website:f.get("website")}),"#comment-status");
     window.renderReactionButtons(saved);
     loadProjects();loadGuestbook();loadComments();loadReactions();
   }
