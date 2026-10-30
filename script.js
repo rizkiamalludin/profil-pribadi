@@ -48,6 +48,17 @@ if(card){
   stage.insertBefore(rope,card);
   const shadow=rope.querySelector('.rope-shadow'),main=rope.querySelector('.rope-main'),highlight=rope.querySelector('.rope-highlight');
   let anchor=null,dragging=false,startX=0,startY=0,baseX=0,baseY=0,offsetX=0,offsetY=0;
+  let ropeLoopActive=false,ropeStopAt=0;
+  function trackRope(){
+    updateRope();
+    if(dragging||performance.now()<ropeStopAt)requestAnimationFrame(trackRope);
+    else ropeLoopActive=false;
+  }
+  function startRopeTracking(){
+    if(ropeLoopActive)return;
+    ropeLoopActive=true;
+    requestAnimationFrame(trackRope);
+  }
   function updateRope(){
     const sr=stage.getBoundingClientRect(),cr=card.getBoundingClientRect();
     rope.setAttribute('viewBox','0 0 '+sr.width+' '+sr.height);
@@ -64,6 +75,7 @@ if(card){
   card.addEventListener('pointerdown',e=>{
     if(e.button!==0 && e.pointerType==='mouse')return;
     dragging=true;startX=e.clientX;startY=e.clientY;baseX=offsetX;baseY=offsetY;
+    ropeStopAt=0;startRopeTracking();
     card.classList.add('is-dragging');card.setPointerCapture(e.pointerId);
   });
   card.addEventListener('pointermove',e=>{
@@ -84,14 +96,10 @@ if(card){
     if(card.hasPointerCapture(e.pointerId))card.releasePointerCapture(e.pointerId);
     offsetX=0;offsetY=0;
     render();
-    // Keep recalculating the rope endpoint throughout the card's return transition.
-    const returnEndsAt=performance.now()+700;
-    const followReturningCard=()=>{
-      updateRope();
-      if(performance.now()<returnEndsAt)requestAnimationFrame(followReturningCard);
-      else { updateRope(); card.classList.remove('is-returning'); }
-    };
-    requestAnimationFrame(followReturningCard);
+    // Track the rope continuously until the card's return animation has finished.
+    ropeStopAt=performance.now()+850;
+    startRopeTracking();
+    setTimeout(()=>card.classList.remove('is-returning'),700);
   };
   card.addEventListener('pointerup',release);card.addEventListener('pointercancel',release);
   window.addEventListener('resize',()=>{anchor=null;updateRope()});
