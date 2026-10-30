@@ -260,7 +260,7 @@ html.site-dark body a{color:#93c5fd}
         <article class="interaction-card">
           <h3 id="contact-card-title">Kirim pesan</h3>
           <p id="contact-intro">Pesan akan masuk ke inbox pribadi pemilik website.</p>
-          <form id="contact-form" class="interaction-form">
+          <form id="contact-form" class="interaction-form"><label class="interaction-honeypot" aria-hidden="true" tabindex="-1">Leave this field empty<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
             <label><span class="i18n-name">Nama</span><input name="name" type="text" minlength="2" maxlength="80" autocomplete="name" required></label>
             <label><span class="i18n-email">Email</span><input name="email" type="email" maxlength="254" autocomplete="email" required></label>
             <label><span class="i18n-subject">Subjek</span><input name="subject" type="text" minlength="3" maxlength="140" required></label>
@@ -273,7 +273,7 @@ html.site-dark body a{color:#93c5fd}
         <article class="interaction-card">
           <h3 id="guestbook-card-title">Guestbook</h3>
           <p id="guestbook-intro">Tinggalkan salam singkat. Pesan ditampilkan setelah moderasi.</p>
-          <form id="guestbook-form" class="interaction-form">
+          <form id="guestbook-form" class="interaction-form"><label class="interaction-honeypot" aria-hidden="true" tabindex="-1">Leave this field empty<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
             <label><span class="i18n-nickname">Nama panggilan</span><input name="nickname" type="text" minlength="2" maxlength="40" required></label>
             <label><span class="i18n-message">Pesan</span><textarea name="message" minlength="2" maxlength="500" required></textarea></label>
             <button id="guestbook-submit" type="submit">Kirim salam</button>
@@ -291,7 +291,7 @@ html.site-dark body a{color:#93c5fd}
         <article class="interaction-card interaction-wide">
           <h3 id="comment-card-title">Komentar pengunjung</h3>
           <p id="comment-hint" class="muted">Komentar akan ditinjau sebelum tampil.</p>
-          <form id="comment-form" class="interaction-form">
+          <form id="comment-form" class="interaction-form"><label class="interaction-honeypot" aria-hidden="true" tabindex="-1">Leave this field empty<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
             <label><span class="i18n-nickname">Nama panggilan</span><input name="nickname" type="text" minlength="2" maxlength="40" required></label>
             <label><span class="i18n-message">Pesan</span><textarea name="message" minlength="2" maxlength="1500" required></textarea></label>
             <button id="comment-submit" type="submit">Kirim komentar</button>
