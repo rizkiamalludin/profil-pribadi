@@ -76,7 +76,23 @@ if(card){
       render(-y*7,x*9);
     }
   });
-  const release=e=>{if(!dragging)return;dragging=false;card.classList.remove('is-dragging');card.classList.add('is-returning');if(card.hasPointerCapture(e.pointerId))card.releasePointerCapture(e.pointerId);offsetX=0;offsetY=0;render();setTimeout(()=>card.classList.remove('is-returning'),700)};
+  const release=e=>{
+    if(!dragging)return;
+    dragging=false;
+    card.classList.remove('is-dragging');
+    card.classList.add('is-returning');
+    if(card.hasPointerCapture(e.pointerId))card.releasePointerCapture(e.pointerId);
+    offsetX=0;offsetY=0;
+    render();
+    // Keep recalculating the rope endpoint throughout the card's return transition.
+    const returnEndsAt=performance.now()+700;
+    const followReturningCard=()=>{
+      updateRope();
+      if(performance.now()<returnEndsAt)requestAnimationFrame(followReturningCard);
+      else { updateRope(); card.classList.remove('is-returning'); }
+    };
+    requestAnimationFrame(followReturningCard);
+  };
   card.addEventListener('pointerup',release);card.addEventListener('pointercancel',release);
   window.addEventListener('resize',()=>{anchor=null;updateRope()});
 }
