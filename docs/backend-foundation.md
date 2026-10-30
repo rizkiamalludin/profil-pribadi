@@ -11,6 +11,7 @@ Migrations recorded in Supabase:
 - `lock_reactions_until_server_endpoint`
 - `profile_owner_access_and_public_rate_limits`
 - `service_role_rate_limit_policy`
+- `tighten_public_writes_and_rls_performance`
 
 Tables with RLS enabled:
 - `profile_content`: bilingual profile/project/experience/achievement/blog/site-setting content with draft/published/archived status.
@@ -23,7 +24,7 @@ Tables with RLS enabled:
 
 Authorization:
 - Public readers see only published profile content and approved guestbook/comments.
-- Public roles do not have direct insert/update/delete access to guestbook, comments, reactions, or contact inbox.
+- Public roles do not have direct insert/update/delete access to guestbook, comments, reactions, or contact inbox. Public writes go through the rate-limited Edge Function.
 - Owner policies restrict content management, inbox, moderation, and sync history to the verified owner email `rizkiamalludin99@gmail.com`.
 - Contact inbox and sync history are not publicly readable.
 - The rate-limit table and its RPC are restricted to `service_role`; the RPC uses a fixed search path and only grants execution to that server role.
