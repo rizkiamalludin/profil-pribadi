@@ -2,7 +2,7 @@
 
 Branch: `redesign/profile-foundation`
 Supabase project: `qkexfgadhtnkgzdfbcnf` (Singapore)
-Preview: `https://profil-pribadi-7r83cg67x-rizki-amalludin.vercel.app`
+Preview: `https://profil-pribadi-9mj94cno9-rizki-amalludin.vercel.app`
 
 ## Database and security
 
