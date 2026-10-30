@@ -409,3 +409,6 @@ html{scroll-padding-top:90px}
 .id-card-3d{z-index:3}
 .id-card-3d .lanyard{display:none}
 @media(prefers-reduced-motion:reduce){.lanyard-rope{display:none}}
+
+/* Return the draggable ID card smoothly to its original resting position. */
+.id-card-3d.is-returning{transition:transform .65s cubic-bezier(.2,.8,.2,1)!important}
