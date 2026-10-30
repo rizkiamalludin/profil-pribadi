@@ -84,7 +84,7 @@ async function beginGoogleLogin(){
  const verifier=[...random].map(b=>b.toString(16).padStart(2,"0")).join("");
  const digest=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(verifier));
  const bytes=String.fromCharCode(...new Uint8Array(digest));
- const challenge=btoa(bytes).replace(/\\+/g,"-").replace(/\\//g,"_").replace(/=+$/,"");
+ const challenge=btoa(bytes).split("+").join("-").split("/").join("_").replace(/=+$/,"");
  sessionStorage.setItem("profile-admin-pkce-verifier",verifier);
  const redirect=location.origin+location.pathname;
  const url=new URL(URL+"/auth/v1/authorize");
