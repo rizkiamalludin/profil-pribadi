@@ -36,13 +36,14 @@ html.site-dark body a{color:#93c5fd}
 </style>
 </head>
 <body>
+<div class="loading-screen" id="loading-screen"><div class="loader-orbit"></div><b>MRA<span>.</span></b><div class="loader-track"><i id="loader-bar"></i></div><small id="loader-percent">0%</small></div><canvas id="starfield" aria-hidden="true"></canvas>
   <div class="bg-glow" aria-hidden="true"></div>
   <div class="bg-grid" aria-hidden="true"></div>
 
   <header class="nav">
     <a href="#hero" class="logo" aria-label="M. Rizki Amalludin — beranda"><img src="logo.svg" alt="M. Rizki Amalludin" width="180" height="48" style="display:block;width:min(180px,42vw);height:auto"></a>
     <nav class="nav-links">
-      <a href="#tentang">Tentang</a>
+      <a href="#tentang">Tentang</a><a href="#portfolio">Proyek</a><a href="#tech-stack">Tech Stack</a>
       <a href="#kebiasaan">Kebiasaan</a>
       <a href="#skill">Skill</a>
       <a href="#impian">Impian</a>
@@ -66,9 +67,9 @@ html.site-dark body a{color:#93c5fd}
           <a href="#tentang" class="btn btn-ghost">Tentang saya</a>
         </div>
       </div>
-      <div class="hero-card reveal">
+      <div class="hero-card id-card-3d reveal" id="id-card-3d"><div class="lanyard"></div><div class="id-card-top"><span>PERSONAL ID</span><b>MRA</b></div>
         <div class="avatar"><img src="foto-saya.webp" alt="M. Rizki Amalludin" /></div>
-        <div class="status"><span class="dot"></span> Open to chat</div>
+        <div class="id-card-bottom"><span class="status"><span class="dot"></span> Open to chat</span><small>NO. 001 / 2026</small></div>
         <ul class="quick">
           <li><strong>Role</strong><span>Pelajar / Mahasiswa</span></li>
           <li><strong>Fokus</strong><span>Teknologi &amp; AI</span></li>
@@ -78,6 +79,19 @@ html.site-dark body a{color:#93c5fd}
       </div>
     </section>
 
+<!-- PORTFOLIO -->
+<section id="portfolio" class="section"><h2 class="section-title reveal">Proyek <span>Unggulan</span></h2><p class="section-intro reveal">Karya digital yang sedang dan pernah saya kembangkan.</p>
+<div class="filter-row reveal"><button class="filter-btn active" data-filter="all">Semua</button><button class="filter-btn" data-filter="web">Website</button><button class="filter-btn" data-filter="app">Aplikasi</button><button class="filter-btn" data-filter="community">Komunitas</button></div>
+<div class="project-grid">
+<article class="project-card reveal" data-category="web"><span class="project-icon">⌘</span><small>WEBSITE</small><h3>CodeMuda</h3><p>Ruang belajar pemrograman dengan materi, contoh kode, dan kuis interaktif.</p><a href="https://codemuda.vercel.app" target="_blank" rel="noopener">Kunjungi proyek ↗</a></article>
+<article class="project-card reveal" data-category="community"><span class="project-icon">✦</span><small>SOCIAL HUB</small><h3>RuangKepo</h3><p>Tempat bermain dan berinteraksi bersama teman melalui fitur sosial ringan.</p><a href="https://ruangkepo.vercel.app" target="_blank" rel="noopener">Kunjungi proyek ↗</a></article>
+<article class="project-card reveal" data-category="web"><span class="project-icon">▥</span><small>EDUCATION</small><h3>Panduan Excel &amp; Word</h3><p>Belajar Microsoft Office melalui panduan dan tutorial praktis.</p><a href="https://panduan-excel-word.vercel.app" target="_blank" rel="noopener">Kunjungi proyek ↗</a></article>
+<article class="project-card reveal" data-category="app"><span class="project-icon">◈</span><small>SIMULATOR</small><h3>SahamKu</h3><p>Simulasi saham dan pembelajaran dasar pasar keuangan.</p><a href="https://sahamku.vercel.app" target="_blank" rel="noopener">Kunjungi proyek ↗</a></article>
+<article class="project-card reveal" data-category="web"><span class="project-icon">◎</span><small>SOCIAL IMPACT</small><h3>BantuDunia</h3><p>Konsep platform untuk membantu kebutuhan dan aktivitas sehari-hari.</p><a href="https://bantudunia.vercel.app" target="_blank" rel="noopener">Kunjungi proyek ↗</a></article>
+</div></section>
+<section id="sertifikat" class="section"><h2 class="section-title reveal">Sertifikat &amp; <span>Pencapaian</span></h2><div class="empty-certificate reveal"><span>✧</span><h3>Perjalanan masih berjalan</h3><p>Sertifikat akan ditambahkan saat sudah tersedia.</p></div></section>
+<section id="tech-stack" class="section"><h2 class="section-title reveal">Tech <span>Stack</span></h2><div class="tech-grid reveal"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Python</span><span>GitHub</span><span>Vercel</span><span>Supabase</span><span>Figma</span><span>Canva</span></div></section>
+<section id="musik" class="section"><h2 class="section-title reveal">Music <span>Corner</span></h2><div class="music-card reveal"><div class="music-art">♫</div><div><small>SPOTIFY CORNER</small><h3>Temani waktu berkarya</h3><p>Pilih playlist favoritmu di Spotify. Pemutar playlist langsung bisa dipasang setelah kamu menentukan playlist yang ingin ditampilkan.</p><a class="btn btn-primary" href="https://open.spotify.com/search" target="_blank" rel="noopener">Buka Spotify ↗</a></div></div></section>
     <!-- MOTTO -->
     <section class="quote reveal">
       <blockquote>
