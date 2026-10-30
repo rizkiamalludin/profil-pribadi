@@ -106,6 +106,95 @@
     const footer=$(".footer p");if(footer)footer.lastChild.textContent=" "+d.footer;
     if(window.renderDynamicProjects)window.renderDynamicProjects(lang);
     if(window.renderReactionButtons)window.renderReactionButtons(lang);
+    const t=(selector,values)=>{$(selector).forEach((node,i)=>{if(values[i]!==undefined)node.textContent=values[i];});};
+    if(lang==="en"){
+      t(".empty-certificate h3",["The journey is still unfolding"]);
+      t(".empty-certificate p",["Certificates will be added as they become available."]);
+      t(".journey-stop small",["LEADERSHIP","CONTRIBUTION","EXPERIMENTATION"]);
+      t(".journey-stop h3",["Learning to take responsibility","Sharing knowledge","Turning ideas into projects"]);
+      t(".journey-stop p",[
+        "Experience as an organization secretary, chairperson, and community initiator. Organization names are omitted for privacy.",
+        "Supporting younger students in learning and taking part in social and community activities.",
+        "Building digital projects as a space for practice, experimentation, and continuous learning."
+      ]);
+      t(".music-card small",["SPOTIFY FEATURED TRACK"]);
+      t(".music-card h3",["Carol of the Bells"]);
+      t(".music-card p",["An orchestral atmosphere to accompany creative work."]);
+      t(".music-card a",["Open playlist on Spotify ↗"]);
+      t(".quote blockquote",["“Do not just dream of becoming great. Prove it through action, even when the steps are small and difficult.”"]);
+      t(".quote cite",["— My life motto"]);
+      t(".about-grid .card h3",["🧑‍💻 Who I am","🎮 Everyday life","✍️ Creative side"]);
+      t(".about-grid .card p",[
+        "My name is M. Rizki Amalludin, a student enthusiastic about technology. I enjoy experimenting with new things, especially programming and artificial intelligence.",
+        "My days include coding while learning new things, playing games for fun, and watching films or series to unwind.",
+        "Beyond technology, I also enjoy writing poetry and short stories. Writing is a quiet way to preserve ideas and feelings."
+      ]);
+      t(".values-title",["Values I believe in"]);
+      t(".values-grid span",["📚 Keep learning","✍️ Dare to create","🌱 Keep growing","🤝 Be helpful"]);
+      t(".habit-grid .habit h3",["Coding","Gaming","Watching films","Technology & AI","Design","Writing","Reading & learning"]);
+      t(".habit-grid .habit p",[
+        "Trying new ideas, building small projects, and learning about technology.",
+        "A way to have fun while practicing strategy and focus.",
+        "Spending free time with favourite films and series.",
+        "Following AI developments and exploring its possibilities.",
+        "Designing interfaces with Figma, Canva, and other visual experiments.",
+        "Writing poetry and short stories as a creative outlet.",
+        "Gathering new knowledge to see things from different perspectives."
+      ]);
+      t(".skill-wrap .card h3",["🎨 Design","⌨️ Technology","✍️ Creative"]);
+      t(".dream-grid .dream h3",["Keep developing myself","Make a positive impact"]);
+      t(".dream-grid .dream p",[
+        "Building discipline, knowledge, and skills one step at a time.",
+        "Using the abilities I have to help others."
+      ]);
+      t(".dream-tagline",["“I do not have to be great right away. What matters is to keep moving.”"]);
+      const contact=$("#kontak .contact > p");
+      if(contact)contact.textContent="Have an idea, a collaboration offer, or just want to talk? Feel free to reach out.";
+    }else{
+      t(".empty-certificate h3",["Perjalanan masih berjalan"]);
+      t(".empty-certificate p",["Sertifikat akan ditambahkan saat sudah tersedia."]);
+      t(".journey-stop small",["KEPEMIMPINAN","KONTRIBUSI","EKSPERIMEN"]);
+      t(".journey-stop h3",["Belajar memegang tanggung jawab","Berbagi pengetahuan","Mewujudkan ide menjadi proyek"]);
+      t(".journey-stop p",[
+        "Pengalaman sebagai sekretaris organisasi, ketua, dan penggagas komunitas. Nama organisasi tidak ditampilkan untuk menjaga privasi.",
+        "Mendampingi adik tingkat belajar dan ikut dalam kegiatan sosial serta komunitas.",
+        "Mengembangkan proyek digital sebagai ruang latihan, eksperimen, dan pembelajaran berkelanjutan."
+      ]);
+      t(".music-card small",["SPOTIFY FEATURED TRACK"]);
+      t(".music-card h3",["Carol of the Bells"]);
+      t(".music-card p",["Nuansa orkestra yang megah untuk menemani waktu berkarya."]);
+      t(".music-card a",["Buka playlist di Spotify ↗"]);
+      t(".quote blockquote",["“Jangan cuma bermimpi menjadi orang hebat. Buktikan lewat tindakan, meski kecil dan melelahkan.”"]);
+      t(".quote cite",["— Moto hidup saya"]);
+      t(".about-grid .card h3",["🧑‍💻 Siapa saya","🎮 Kebiasaan sehari-hari","✍️ Sisi kreatif"]);
+      t(".about-grid .card p",[
+        "Nama saya M. Rizki Amalludin, seorang pelajar yang antusias di dunia teknologi. Saya suka bereksperimen dengan hal-hal baru, terutama yang berhubungan dengan pemrograman dan kecerdasan buatan.",
+        "Hari-hari saya diisi ngoding sambil belajar hal baru, main game untuk mengisi waktu, dan nonton film atau serial buat melepas penat.",
+        "Selain teknologi, saya juga senang menciptakan puisi dan cerpen. Menulis bagi saya cara tenang menyimpan ide dan perasaan."
+      ]);
+      t(".values-title",["Nilai yang saya pegang"]);
+      t(".values-grid span",["📚 Terus belajar","✍️ Berani berkarya","🌱 Bertumbuh","🤝 Bermanfaat"]);
+      t(".habit-grid .habit h3",["Ngoding","Main Game","Nonton Film","Teknologi & AI","Desain","Menulis","Membaca & belajar"]);
+      t(".habit-grid .habit p",[
+        "Mencoba ide baru, bikin proyek kecil, dan terus belajar teknologi terbaru.",
+        "Tempat saya bersenang-senang sekaligus melatih strategi dan fokus.",
+        "Mengisi waktu luang dengan film dan serial favorit.",
+        "Mengikuti perkembangan AI dan membayangkan seperti apa masa depannya.",
+        "Mendesain tampilan dengan Figma, Canva, dan eksperimen visual lainnya.",
+        "Menciptakan puisi dan cerpen sebagai ruang kreativitas.",
+        "Mengumpulkan pengetahuan baru agar bisa melihat sesuatu dari sudut pandang berbeda."
+      ]);
+      t(".skill-wrap .card h3",["🎨 Desain","⌨️ Teknologi","✍️ Kreatif"]);
+      t(".dream-grid .dream h3",["Terus mengembangkan diri","Memberi manfaat"]);
+      t(".dream-grid .dream p",[
+        "Melatih disiplin, pengetahuan, dan keterampilan sedikit demi sedikit.",
+        "Menggunakan kemampuan yang saya punya untuk membantu sesama."
+      ]);
+      t(".dream-tagline",["“Tidak harus langsung hebat. Yang penting, terus melangkah.”"]);
+      const contact=$("#kontak .contact > p");
+      if(contact)contact.textContent="Punya ide, tawaran kolaborasi, atau sekadar mau ngobrol? Silakan hubungi saya.";
+    }
+    loadReactions();
   };
 
   const projectState = { id:[], en:[] };
