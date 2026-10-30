@@ -14,6 +14,7 @@
   <link rel="icon" type="image/png" href="favicon.png" />
   <link rel="preload" as="image" href="logo.svg" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="interactions.css" />
 
   <style id="site-quality-baseline">
     .loader-brand{display:block;width:88px;height:88px;object-fit:contain;margin:0 auto 18px;position:relative;z-index:2;filter:drop-shadow(0 0 18px rgba(96,165,250,.28))}
@@ -46,6 +47,7 @@ html.site-dark body a{color:#93c5fd}
 
   <header class="nav">
     <a href="#hero" class="logo" aria-label="M. Rizki Amalludin — beranda"><img src="logo.svg" alt="M. Rizki Amalludin" width="180" height="48" style="display:block;width:min(180px,42vw);height:auto"></a>
+    <button class="language-toggle" id="language-toggle" type="button" aria-label="Switch language">EN</button>
     <button class="nav-menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Buka navigasi">☰</button>
     <nav class="nav-links" id="primary-navigation">
       <a href="#hero">Beranda</a><a href="#tentang">Tentang</a><a href="#portfolio">Proyek</a><a href="#pengalaman">Pengalaman</a><a href="#pencapaian">Pencapaian</a><a href="#tech-stack">Teknologi</a><a href="#musik">Musik</a><a href="#kontak">Kontak</a>
@@ -251,13 +253,63 @@ html.site-dark body a{color:#93c5fd}
         </div>
       </div>
     </section>
+
+    <section id="interaksi" class="section interaction-section">
+      <h2 class="section-title reveal">Ruang <span>Interaksi</span></h2>
+      <div class="interaction-grid">
+        <article class="interaction-card">
+          <h3 id="contact-card-title">Kirim pesan</h3>
+          <p id="contact-intro">Pesan akan masuk ke inbox pribadi pemilik website.</p>
+          <form id="contact-form" class="interaction-form">
+            <label><span class="i18n-name">Nama</span><input name="name" type="text" minlength="2" maxlength="80" autocomplete="name" required></label>
+            <label><span class="i18n-email">Email</span><input name="email" type="email" maxlength="254" autocomplete="email" required></label>
+            <label><span class="i18n-subject">Subjek</span><input name="subject" type="text" minlength="3" maxlength="140" required></label>
+            <label><span class="i18n-message">Pesan</span><textarea name="message" minlength="10" maxlength="5000" required></textarea></label>
+            <button id="contact-submit" type="submit">Kirim pesan</button>
+            <p id="contact-status" class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </article>
+
+        <article class="interaction-card">
+          <h3 id="guestbook-card-title">Guestbook</h3>
+          <p id="guestbook-intro">Tinggalkan salam singkat. Pesan ditampilkan setelah moderasi.</p>
+          <form id="guestbook-form" class="interaction-form">
+            <label><span class="i18n-nickname">Nama panggilan</span><input name="nickname" type="text" minlength="2" maxlength="40" required></label>
+            <label><span class="i18n-message">Pesan</span><textarea name="message" minlength="2" maxlength="500" required></textarea></label>
+            <button id="guestbook-submit" type="submit">Kirim salam</button>
+            <p id="guestbook-status" class="form-status" role="status" aria-live="polite"></p>
+          </form>
+          <div id="guestbook-list" class="public-list"><p class="empty-state">Memuat pesan...</p></div>
+        </article>
+
+        <article class="interaction-card interaction-wide">
+          <h3 id="reaction-card-title">Apa pendapatmu tentang website ini?</h3>
+          <div id="reaction-buttons" class="reaction-row"></div>
+          <p id="reaction-status" class="form-status" role="status" aria-live="polite"></p>
+        </article>
+
+        <article class="interaction-card interaction-wide">
+          <h3 id="comment-card-title">Komentar pengunjung</h3>
+          <p id="comment-hint" class="muted">Komentar akan ditinjau sebelum tampil.</p>
+          <form id="comment-form" class="interaction-form">
+            <label><span class="i18n-nickname">Nama panggilan</span><input name="nickname" type="text" minlength="2" maxlength="40" required></label>
+            <label><span class="i18n-message">Pesan</span><textarea name="message" minlength="2" maxlength="1500" required></textarea></label>
+            <button id="comment-submit" type="submit">Kirim komentar</button>
+            <p id="comment-status" class="form-status" role="status" aria-live="polite"></p>
+          </form>
+          <div id="comments-list" class="public-list"><p class="empty-state">Memuat komentar...</p></div>
+        </article>
+      </div>
+    </section>
   </main>
 
   <footer class="footer">
     <p>© <span id="year"></span> M. Rizki Amalludin. Dibuat dengan ☕ &amp; semangat.</p>
+    <a class="admin-shortcut" href="/admin.html" rel="nofollow">Admin</a>
   </footer>
 
   <script src="script.js"></script>
+  <script src="backend.js"></script>
 <div id="site-progress" aria-hidden="true"></div><div id="site-tools" aria-label="Alat aksesibilitas"><button type="button" id="site-theme-toggle" aria-label="Aktifkan mode gelap" title="Ganti tema" aria-pressed="false">☾</button><button type="button" id="site-top-button" aria-label="Kembali ke atas" title="Kembali ke atas" hidden>↑</button></div>
 <script id="site-wide-enhancements-script">
 (function(){
