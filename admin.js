@@ -16,7 +16,7 @@ async function refreshSession(){
  if(!session?.refresh_token)return false;
  const r=await fetch(URL+"/auth/v1/token?grant_type=refresh_token",{method:"POST",headers:{apikey:KEY,"Content-Type":"application/json"},body:JSON.stringify({refresh_token:session.refresh_token})});
  if(!r.ok){sessionStorage.removeItem(STORE);session=null;return false;}
- store(await r.json());return true;
+ const refreshed=await r.json();store({...refreshed,expires_at:Math.floor(Date.now()/1000)+(refreshed.expires_in||3600)});return true;
 }
 async function ensureSession(){
  if(!session?.access_token)return false;
@@ -50,11 +50,49 @@ function parseHashSession(){
  const hash=new URLSearchParams(location.hash.slice(1));
  const access=hash.get("access_token");if(!access)return;
  const expires=Number(hash.get("expires_in")||3600);
- const userText=hash.get("user");
- let user={email:hash.get("email")||""};
- try{if(userText)user=JSON.parse(userText);}catch{}
- store({access_token:access,refresh_token:hash.get("refresh_token"),expires_at:Math.floor(Date.now()/1000)+expires,user});
+ store({access_token:access,refresh_token:hash.get("refresh_token"),expires_at:Math.floor(Date.now()/1000)+expires,user:{}});
  history.replaceState(null,"",location.pathname+location.search);
+}
+async function exchangeAuthCode(){
+ const code=new URLSearchParams(location.search).get("code");
+ if(!code)return false;
+ const verifier=sessionStorage.getItem("profile-admin-pkce-verifier");
+ if(!verifier)throw new Error("Sesi OAuth tidak ditemukan. Coba login kembali.");
+ const response=await fetch(URL+"/auth/v1/token?grant_type=pkce",{
+  method:"POST",headers:{apikey:KEY,"Content-Type":"application/json"},
+  body:JSON.stringify({auth_code:code,code_verifier:verifier})
+ });
+ const data=await response.json().catch(()=>({}));
+ if(!response.ok)throw new Error(data.msg||data.message||"Login Google gagal.");
+ store({...data,expires_at:Math.floor(Date.now()/1000)+(data.expires_in||3600)});
+ sessionStorage.removeItem("profile-admin-pkce-verifier");
+ history.replaceState(null,"",location.pathname+location.hash);
+ return true;
+}
+async function validateCurrentUser(){
+ if(!await ensureSession())return false;
+ const response=await fetch(URL+"/auth/v1/user",{headers:{apikey:KEY,Authorization:"Bearer "+session.access_token}});
+ if(!response.ok)return false;
+ const user=await response.json().catch(()=>null);
+ if(!user || (user.email||"").toLowerCase()!==OWNER)return false;
+ session.user=user;
+ store(session);
+ return true;
+}
+async function beginGoogleLogin(){
+ const random=new Uint8Array(32);crypto.getRandomValues(random);
+ const verifier=[...random].map(b=>b.toString(16).padStart(2,"0")).join("");
+ const digest=await crypto.subtle.digest("SHA-256",new TextEncoder().encode(verifier));
+ const bytes=String.fromCharCode(...new Uint8Array(digest));
+ const challenge=btoa(bytes).replace(/\\+/g,"-").replace(/\\//g,"_").replace(/=+$/,"");
+ sessionStorage.setItem("profile-admin-pkce-verifier",verifier);
+ const redirect=location.origin+location.pathname;
+ const url=new URL(URL+"/auth/v1/authorize");
+ url.searchParams.set("provider","google");
+ url.searchParams.set("redirect_to",redirect);
+ url.searchParams.set("code_challenge",challenge);
+ url.searchParams.set("code_challenge_method","s256");
+ location.assign(url.toString());
 }
 async function signOut(){try{if(session?.access_token)await fetch(URL+"/auth/v1/logout",{method:"POST",headers:authHeaders()});}catch{}sessionStorage.removeItem(STORE);session=null;setDashboard(false);}
 
@@ -137,17 +175,42 @@ function initTabs(){
   document.querySelectorAll(".tab-panel").forEach(p=>p.classList.toggle("hidden",p.id!=="tab-"+b.dataset.tab));
  }));
 }
-function init(){
- parseHashSession();loadStored();
- if(session?.access_token&&session.user?.email?.toLowerCase()===OWNER)setDashboard(true);
- $("#otp-form").addEventListener("submit",async e=>{e.preventDefault();const email=$("#admin-email").value.trim().toLowerCase();if(email!==OWNER){status("auth-status","Email tidak masuk daftar pemilik.",true);return;}$("#send-otp").disabled=true;try{await sendOtp(email);$("#verify-form").classList.remove("hidden");status("auth-status","Kode OTP dikirim. Periksa inbox dan folder spam.");}catch(err){status("auth-status",err.message,true);}finally{$("#send-otp").disabled=false;}});
- $("#verify-form").addEventListener("submit",async e=>{e.preventDefault();try{await verifyOtp($("#admin-email").value.trim().toLowerCase(),$("#admin-otp").value.trim());status("auth-status","Login berhasil.");setDashboard(true);}catch(err){status("auth-status",err.message,true);}});
- $("#google-login").addEventListener("click",()=>{const redirect=encodeURIComponent(location.origin+location.pathname);location.href=URL+"/auth/v1/authorize?provider=google&redirect_to="+redirect;});
+async function init(){
+ try{
+  await exchangeAuthCode();
+  parseHashSession();
+  loadStored();
+  if(session?.access_token){
+   if(await validateCurrentUser())setDashboard(true);
+   else {await signOut();status("auth-status","Akses ditolak. Gunakan email pemilik yang terverifikasi.",true);}
+  }
+ }catch(error){status("auth-status",error.message,true);sessionStorage.removeItem(STORE);session=null;}
+ $("#otp-form").addEventListener("submit",async e=>{
+  e.preventDefault();
+  const email=$("#admin-email").value.trim().toLowerCase();
+  if(email!==OWNER){status("auth-status","Email tidak masuk daftar pemilik.",true);return;}
+  $("#send-otp").disabled=true;
+  try{await sendOtp(email);$("#verify-form").classList.remove("hidden");status("auth-status","Kode OTP dikirim. Periksa inbox dan folder spam.");}
+  catch(err){status("auth-status",err.message,true);}
+  finally{$("#send-otp").disabled=false;}
+ });
+ $("#verify-form").addEventListener("submit",async e=>{
+  e.preventDefault();
+  try{
+   await verifyOtp($("#admin-email").value.trim().toLowerCase(),$("#admin-otp").value.trim());
+   if(await validateCurrentUser()){status("auth-status","Login berhasil.");setDashboard(true);}
+   else {await signOut();throw new Error("Akun tidak lolos verifikasi pemilik.");}
+  }catch(err){status("auth-status",err.message,true);}
+ });
+ $("#google-login").addEventListener("click",async()=>{
+  const button=$("#google-login");button.disabled=true;
+  try{await beginGoogleLogin();}catch(err){status("auth-status",err.message,true);button.disabled=false;}
+ });
  $("#sign-out").addEventListener("click",signOut);
  $("#new-content").addEventListener("click",()=>fillContent(null));
  $("#content-form").addEventListener("submit",saveContent);
  $("#github-sync").addEventListener("click",githubSync);
  initTabs();
 }
-if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",()=>{init().catch(e=>status("auth-status",e.message,true));});else init().catch(e=>status("auth-status",e.message,true));
 })();
