@@ -44,3 +44,34 @@ document.querySelectorAll('.filter-btn').forEach(b=>b.addEventListener('click',(
 
 // Mobile navigation
 (function(){const toggle=document.querySelector('.nav-menu-toggle');const nav=document.getElementById('primary-navigation');if(!toggle||!nav)return;toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Tutup navigasi':'Buka navigasi');toggle.textContent=open?'✕':'☰'});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Buka navigasi');toggle.textContent='☰'}));})();
+
+
+// Lightweight scroll choreography: depth layers and a bespoke journey progress line.
+(function(){
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const hero=document.querySelector('.depth-hero');
+  const journey=document.querySelector('.journey-section');
+  if(reduce){if(journey)journey.style.setProperty('--journey-progress','100%');return}
+  let ticking=false;
+  function paint(){
+    ticking=false;
+    const y=window.scrollY||0;
+    if(hero){
+      const rect=hero.getBoundingClientRect();
+      const travel=Math.max(-80,Math.min(80,-rect.top*.12));
+      hero.style.setProperty('--hero-back-y',(travel*.45)+'px');
+      hero.style.setProperty('--hero-front-y',(travel*-.75)+'px');
+      hero.style.setProperty('--hero-card-y',(travel*.18)+'px');
+    }
+    if(journey){
+      const r=journey.getBoundingClientRect();
+      const vh=window.innerHeight||1;
+      const progress=Math.max(0,Math.min(1,(vh*.78-r.top)/(r.height+vh*.18)));
+      journey.style.setProperty('--journey-progress',(progress*100).toFixed(1)+'%');
+    }
+  }
+  function requestPaint(){if(!ticking){ticking=true;requestAnimationFrame(paint)}}
+  window.addEventListener('scroll',requestPaint,{passive:true});
+  window.addEventListener('resize',requestPaint,{passive:true});
+  paint();
+})();
