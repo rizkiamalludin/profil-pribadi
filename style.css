@@ -390,3 +390,6 @@ main { max-width: 1140px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 40px); }
 @media (max-width: 560px) {
   .id-card-3d .lanyard { top: -220px; height: 226px; }
 }
+/* Tali lentur: titik gantung tetap di bawah header */
+.id-card-3d > .lanyard { display: none !important; }
+#id-card-rope { position: fixed; inset: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 45; overflow: visible; }
