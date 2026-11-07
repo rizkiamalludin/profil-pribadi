@@ -140,6 +140,7 @@ if (typedEl && !reducedMotion) {
       <path id="rope-shine" fill="none" stroke="#c7d2fe" stroke-width="2" stroke-linecap="round" opacity=".75"/>
     `;
     document.body.appendChild(rope);
+    card.classList.add("has-svg-rope");
 
     const shadow = rope.querySelector("#rope-shadow");
     const main = rope.querySelector("#rope-main");
