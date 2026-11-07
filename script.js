@@ -214,6 +214,11 @@ if (typedEl && !reducedMotion) {
     updateRope();
     window.requestAnimationFrame(updateRope);
     window.setTimeout(updateRope, 120);
+    // Sinkronkan lagi setelah animasi reveal kartu selesai.
+    window.setTimeout(() => {
+      if (!pressed) setAnchor();
+      updateRope();
+    }, 900);
 
     card.addEventListener("pointerdown", (event) => {
       pressed = true;
