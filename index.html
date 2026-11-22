@@ -1,271 +1,71 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>M. Rizki Amalludin — Profil</title>
-  <meta name="description" content="Website profil pribadi M. Rizki Amalludin — pelajar, pecinta teknologi & AI." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="favicon.png" />
-  <link rel="preload" as="image" href="logo.svg" />
-  <link rel="stylesheet" href="style.css" />
-
-  <style id="site-quality-baseline">
-    :focus-visible{outline:3px solid #38bdf8;outline-offset:3px}
-    img,svg,video,canvas{max-width:100%}
-    [id]{scroll-margin-top:5.5rem}
-    @media(prefers-reduced-motion:reduce){html:focus-within{scroll-behavior:auto!important}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
-  </style>
-<style>.contact-btns a{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap}.contact-btns svg{width:28px;height:28px}</style>
-<style id="site-wide-enhancements">
-#site-progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:99999;background:linear-gradient(90deg,#38bdf8,#8b5cf6);transition:width .12s linear;pointer-events:none}
-#site-tools{position:fixed;right:18px;bottom:18px;z-index:9999;display:flex;flex-direction:column;gap:9px}
-#site-tools button{width:44px;height:44px;border-radius:15px;border:1px solid rgba(148,163,184,.5);background:var(--card, #fff);color:var(--text, #172033);box-shadow:0 6px 24px rgba(15,23,42,.18);font:600 19px system-ui,sans-serif;cursor:pointer;display:grid;place-items:center;transition:transform .18s ease,box-shadow .18s ease}
-#site-tools button:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(15,23,42,.24)}
-#site-tools button:focus-visible{outline:3px solid #60a5fa;outline-offset:3px}
-html.site-dark{color-scheme:dark}
-html.site-dark body{background:#0b1220!important;color:#e5edf8!important}
-html.site-dark body :is(header,nav,footer,section,article,aside,main,.card,.panel,.container,.wrap,.content,.contact-link,.contact-grid,.contact-btns,.modal-content,.quiz-card,.tool-card,.lesson-card,.feature-card,.hero-card){background-color:#111c2e!important;color:#e5edf8!important;border-color:#29384e!important}
-html.site-dark body :is(p,li,label,small,span,h1,h2,h3,h4,strong,b,blockquote){color:inherit}
-html.site-dark body :is(input,textarea,select,pre,code){background-color:#0b1220!important;color:#e5edf8!important;border-color:#394b63!important}
-html.site-dark body a{color:#93c5fd}
-@media(max-width:520px){#site-tools{right:12px;bottom:12px}#site-tools button{width:42px;height:42px;border-radius:14px}}
-@media(prefers-reduced-motion:reduce){#site-tools button,#site-progress{transition:none!important}html{scroll-behavior:auto!important}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="Profil pribadi M. Rizki Amalludin. Pelajar yang tertarik pada teknologi, AI, dan pengembangan proyek digital.">
+  <title>M. Rizki Amalludin — Profil Pribadi</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 <body>
-<div class="loading-screen" id="loading-screen" role="status" aria-label="Memuat website"><img class="loader-logo" src="favicon.png" alt="" width="72" height="72"><span class="loader-caption">M. RIZKI AMALLUDIN</span><div class="loader-track"><i id="loader-bar"></i></div><small id="loader-percent">0%</small></div><canvas id="starfield" aria-hidden="true"></canvas>
-  <div class="bg-glow" aria-hidden="true"></div>
-  <div class="bg-grid" aria-hidden="true"></div>
-
-  <header class="nav">
-    <a href="#hero" class="logo" aria-label="M. Rizki Amalludin — beranda"><img src="logo.svg" alt="M. Rizki Amalludin" width="180" height="48" style="display:block;width:min(180px,42vw);height:auto"></a>
-    <nav class="nav-links">
-      <a href="#tentang">Tentang</a><a href="#portfolio">Proyek</a><a href="#tech-stack">Tech Stack</a>
-      <a href="#kebiasaan">Kebiasaan</a>
-      <a href="#skill">Skill</a>
-      <a href="#impian">Impian</a>
-      <a href="#kontak">Kontak</a>
+  <header class="site-header">
+    <a class="brand" href="#beranda" aria-label="M. Rizki Amalludin, beranda"><img src="logo.svg" alt="" width="180" height="48"></a>
+    <nav class="navigation" aria-label="Navigasi utama">
+      <a href="#tentang">Tentang</a><a href="#minat">Minat</a><a href="#kontak">Kontak</a>
     </nav>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Aktifkan tema terang" aria-pressed="false"><span aria-hidden="true">☼</span></button>
   </header>
 
   <main>
-    <!-- HERO -->
-    <section id="hero" class="hero">
-      <div class="hero-text reveal">
-        <span class="badge">👋 Halo, kenalin</span>
-        <h1>M. Rizki<br /><span class="gradient-text" id="typed-name">Amalludin</span></h1>
-        <p class="role">Pelajar • <span class="rotator">Software Developer</span> • Pecinta Teknologi &amp; AI</p>
-        <p class="lead">
-          Saya orang yang punya kebiasaan ngoding, main game, dan nonton film tiap hari.
-          Bagi saya, mimpi baru jadi nyata kalau dibuktikan dengan tindakan.
-        </p>
-        <div class="hero-cta">
-          <a href="#kontak" class="btn btn-primary">Hubungi saya</a>
-          <a href="#tentang" class="btn btn-ghost">Tentang saya</a>
-        </div>
+    <section class="hero section-wrap" id="beranda">
+      <div class="hero-copy">
+        <p class="eyebrow">PROFIL PRIBADI</p>
+        <h1>M. Rizki <span>Amalludin</span></h1>
+        <p class="hero-role">Pelajar · Tertarik pada teknologi dan AI</p>
+        <p class="hero-description">Saya tertarik mempelajari teknologi, kecerdasan buatan, bisnis, ekonomi, pertanian, dan pengembangan proyek digital.</p>
+        <div class="hero-actions"><a class="button button-primary" href="#tentang">Kenali saya</a><a class="button button-secondary" href="#kontak">Hubungi</a></div>
       </div>
-      <div class="hero-card id-card-3d reveal" id="id-card-3d"><div class="lanyard"></div><div class="id-card-top"><span>PERSONAL ID</span><b>MRA</b></div>
-        <div class="avatar"><img src="foto-saya.webp" alt="M. Rizki Amalludin" /></div>
-        <div class="id-card-bottom"><span class="status"><span class="dot"></span> Open to chat</span><small>NO. 001 / 2026</small></div>
-        <ul class="quick">
-          <li><strong>Role</strong><span>Pelajar / Mahasiswa</span></li>
-          <li><strong>Fokus</strong><span>Teknologi &amp; AI</span></li>
-          <li><strong>Lokasi</strong><span>Indonesia 🇮🇩</span></li>
-          <li><strong>Email</strong><span>rizkiamalludin99@gmail.com</span></li>
-        </ul>
+      <div class="profile-frame">
+        <div class="profile-orbit" aria-hidden="true"></div>
+        <img class="profile-photo" src="foto-saya.webp" alt="Foto M. Rizki Amalludin" width="420" height="520">
+        <p class="photo-caption">M. Rizki Amalludin</p>
       </div>
     </section>
 
-<!-- PORTFOLIO -->
-<section id="portfolio" class="section"><h2 class="section-title reveal">Proyek <span>Unggulan</span></h2><p class="section-intro reveal">Karya digital yang sedang dan pernah saya kembangkan.</p>
-<div class="filter-row reveal"><button class="filter-btn active" data-filter="all">Semua</button><button class="filter-btn" data-filter="web">Website</button><button class="filter-btn" data-filter="app">Aplikasi</button><button class="filter-btn" data-filter="community">Komunitas</button></div>
-<div class="project-grid">
-<article class="project-card reveal" data-category="web"><span class="project-icon">⌘</span><small>WEBSITE</small><h3>CodeMuda</h3><p>Ruang belajar pemrograman dengan materi, contoh kode, dan kuis interaktif.</p><a href="https://codemuda.vercel.app" target="_blank" rel="noopener">Kunjungi proyek ↗</a></article>
-<article class="project-card reveal" data-category="community"><span class="project-icon">✦</span><small>SOCIAL HUB</small><h3>RuangKepo</h3><p>Tempat bermain dan berinteraksi bersama teman melalui fitur sosial ringan.</p><a href="https://ruangkepo.my.id" target="_blank" rel="noopener">Kunjungi proyek ↗</a></article>
-<article class="project-card reveal" data-category="web"><span class="project-icon">▥</span><small>EDUCATION</small><h3>Panduan Excel &amp; Word</h3><p>Belajar Microsoft Office melalui panduan dan tutorial praktis.</p><a href="https://panduan-excel-word.vercel.app" target="_blank" rel="noopener">Kunjungi proyek ↗</a></article>
-<article class="project-card reveal" data-category="app"><span class="project-icon">◈</span><small>SIMULATOR</small><h3>SahamKu</h3><p>Simulasi saham dan pembelajaran dasar pasar keuangan.</p><a href="https://sahamku-self.vercel.app" target="_blank" rel="noopener">Kunjungi proyek ↗</a></article>
-<article class="project-card reveal" data-category="web"><span class="project-icon">◎</span><small>SOCIAL IMPACT</small><h3>BantuDunia</h3><p>Konsep platform untuk membantu kebutuhan dan aktivitas sehari-hari.</p><a href="https://bantu-dunia.vercel.app" target="_blank" rel="noopener">Kunjungi proyek ↗</a></article>
-</div></section>
-<section id="sertifikat" class="section"><h2 class="section-title reveal">Sertifikat &amp; <span>Pencapaian</span></h2><div class="empty-certificate reveal"><span>✧</span><h3>Perjalanan masih berjalan</h3><p>Sertifikat akan ditambahkan saat sudah tersedia.</p></div></section>
-<section id="tech-stack" class="section"><h2 class="section-title reveal">Tech <span>Stack</span></h2><div class="tech-grid reveal"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Python</span><span>GitHub</span><span>Vercel</span><span>Supabase</span><span>Figma</span><span>Canva</span></div></section>
-<section id="musik" class="section"><h2 class="section-title reveal">Music <span>Corner</span></h2><div class="music-card reveal"><div class="music-art">♫</div><div><small>SPOTIFY CORNER</small><h3>Temani waktu berkarya</h3><p>Pilih playlist favoritmu di Spotify. Pemutar playlist langsung bisa dipasang setelah kamu menentukan playlist yang ingin ditampilkan.</p><a class="btn btn-primary" href="https://open.spotify.com/search" target="_blank" rel="noopener">Buka Spotify ↗</a></div></div></section>
-    <!-- MOTTO -->
-    <section class="quote reveal">
-      <blockquote>
-        “Jangan cuma bermimpi menjadi orang hebat. Buktikan lewat tindakan, meski kecil dan melelahkan.”
-      </blockquote>
-      <cite>— Moto hidup saya</cite>
-    </section>
-
-    <!-- TENTANG -->
-    <section id="tentang" class="section">
-      <h2 class="section-title reveal">Tentang <span>Saya</span></h2>
-      <div class="about-grid">
-        <div class="card reveal">
-          <h3>🧑‍💻 Siapa saya</h3>
-          <p>
-            Nama saya <strong>M. Rizki Amalludin</strong>, seorang pelajar yang antusias di dunia
-            teknologi. Saya suka bereksperimen dengan hal-hal baru, terutama yang berhubungan
-            dengan pemrograman dan kecerdasan buatan.
-          </p>
-        </div>
-        <div class="card reveal">
-          <h3>🎮 Kebiasaan sehari-hari</h3>
-          <p>
-            Hari-hari saya diisi <strong>ngoding</strong> sambil belajar hal baru,
-            <strong>main game</strong> untuk mengisi waktu, dan <strong>nonton film</strong>
-            atau serial buat melepas penat.
-          </p>
-        </div>
-        <div class="card reveal">
-          <h3>✍️ Sisi kreatif</h3>
-          <p>
-            Selain teknologi, saya juga senang <strong>menciptakan puisi dan cerpen</strong>.
-            Menulis bagi saya cara tenang menyimpan ide dan perasaan.
-          </p>
-        </div>
-      </div>
-
-      <div class="values reveal">
-        <h3 class="values-title">Nilai yang saya pegang</h3>
-        <div class="values-grid">
-          <span>📚 Terus belajar</span>
-          <span>✍️ Berani berkarya</span>
-          <span>🌱 Bertumbuh</span>
-          <span>🤝 Bermanfaat</span>
-        </div>
+    <section class="content-section section-wrap" id="tentang">
+      <div class="section-heading"><p class="eyebrow">PERKENALAN</p><h2>Tentang <span>saya</span></h2></div>
+      <div class="about-panel">
+        <p>Saya seorang pelajar yang senang mempelajari hal baru dan mencoba menuangkan ide menjadi sesuatu yang nyata. Saat ini, ketertarikan saya banyak berada di bidang teknologi, AI, dan proyek digital.</p>
+        <p>Website ini menjadi tempat untuk memperkenalkan diri dan mendokumentasikan hal-hal yang memang sedang saya pelajari atau kerjakan. Isinya akan diperbarui seiring perkembangan saya.</p>
       </div>
     </section>
 
-    <!-- KEBIASAAN -->
-    <section id="kebiasaan" class="section">
-      <h2 class="section-title reveal">Kebiasaan &amp; <span>Hobi</span></h2>
-      <div class="habit-grid">
-        <article class="habit reveal">
-          <div class="habit-icon">⌨️</div>
-          <h3>Ngoding</h3>
-          <p>Mencoba ide baru, bikin proyek kecil, dan terus belajar teknologi terbaru.</p>
-        </article>
-        <article class="habit reveal">
-          <div class="habit-icon">🎮</div>
-          <h3>Main Game</h3>
-          <p>Tempat saya bersenang-senang sekaligus melatih strategi dan fokus.</p>
-        </article>
-        <article class="habit reveal">
-          <div class="habit-icon">🎬</div>
-          <h3>Nonton Film</h3>
-          <p>Mengisi waktu luang dengan film dan serial favorit sambil rebahan.</p>
-        </article>
-        <article class="habit reveal">
-          <div class="habit-icon">🤖</div>
-          <h3>Teknologi &amp; AI</h3>
-          <p>Mengikuti perkembangan AI dan berimajinasi seperti apa masa depannya.</p>
-        </article>
-        <article class="habit reveal">
-          <div class="habit-icon">🎨</div>
-          <h3>Desain</h3>
-          <p>Mendesain tampilan dengan Figma, Canva, dan eksperimen visual lainnya.</p>
-        </article>
-        <article class="habit reveal">
-          <div class="habit-icon">📖</div>
-          <h3>Menulis</h3>
-          <p>Menciptakan puisi dan cerpen sebagai pelampiasan kreatif.</p>
-        </article>
-        <article class="habit reveal">
-          <div class="habit-icon">📚</div>
-          <h3>Membaca &amp; belajar</h3>
-          <p>Mengumpulkan pengetahuan baru biar bisa melihat sesuatu dari sudut pandang berbeda.</p>
-        </article>
+    <section class="content-section section-wrap" id="minat">
+      <div class="section-heading"><p class="eyebrow">HAL YANG SAYA MINATI</p><h2>Bidang <span>ketertarikan</span></h2></div>
+      <div class="interest-grid">
+        <article class="interest-card"><span class="interest-number">01</span><h3>Teknologi &amp; AI</h3><p>Mempelajari perkembangan teknologi dan kecerdasan buatan.</p></article>
+        <article class="interest-card"><span class="interest-number">02</span><h3>Proyek digital</h3><p>Mengeksplorasi ide dan proses pembuatan website atau produk digital.</p></article>
+        <article class="interest-card"><span class="interest-number">03</span><h3>Bisnis &amp; ekonomi</h3><p>Mempelajari cara kerja bisnis dan kegiatan ekonomi.</p></article>
+        <article class="interest-card"><span class="interest-number">04</span><h3>Pertanian</h3><p>Memiliki ketertarikan pada bidang pertanian.</p></article>
       </div>
     </section>
 
-    <!-- SKILL -->
-    <section id="skill" class="section">
-      <h2 class="section-title reveal">Skill &amp; <span>Minat</span></h2>
-      <div class="skill-wrap">
-        <div class="card reveal">
-          <h3>🎨 Desain</h3>
-          <div class="tags">
-            <span class="tag">Figma</span>
-            <span class="tag">Desain UI</span>
-            <span class="tag">Canva</span>
-          </div>
-        </div>
-        <div class="card reveal">
-          <h3>⌨️ Teknologi</h3>
-          <div class="tags">
-            <span class="tag">HTML &amp; CSS</span>
-            <span class="tag">JavaScript</span>
-            <span class="tag">AI &amp; tools</span>
-          </div>
-        </div>
-        <div class="card reveal">
-          <h3>✍️ Kreatif</h3>
-          <div class="tags">
-            <span class="tag">Puisi</span>
-            <span class="tag">Cerpen</span>
-            <span class="tag">Storytelling</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- IMPIAN -->
-    <section id="impian" class="section">
-      <h2 class="section-title reveal">Arah yang <span>Ingin Dituju</span></h2>
-      <div class="dream-grid">
-        <article class="dream reveal">
-          <span class="check">✓</span>
-          <div>
-            <h3>Terus mengembangkan diri</h3>
-            <p>Melatih disiplin, pengetahuan, dan keterampilan sedikit demi sedikit.</p>
-          </div>
-        </article>
-        <article class="dream reveal">
-          <span class="check">✓</span>
-          <div>
-            <h3>Memberi manfaat</h3>
-            <p>Menggunakan kemampuan yang saya punya untuk membantu sesama.</p>
-          </div>
-        </article>
-      </div>
-      <p class="dream-tagline reveal">“Tidak harus langsung hebat. Yang penting, terus melangkah.”</p>
-    </section>
-
-    <!-- KONTAK -->
-    <section id="kontak" class="section">
-      <h2 class="section-title reveal">Mari <span>Terhubung</span></h2>
-      <div class="contact reveal">
-        <p>Punya ide, tawaran kolaborasi, atau sekadar mau ngobrol? Silakan hubungi saya.</p>
-        <div class="contact-btns">
-          <a class="btn btn-primary" href="mailto:rizkiamalludin99@gmail.com"><svg viewBox="0 0 48 36" width="42" height="32" role="img" aria-label="Logo Gmail" style="flex:none"><path fill="#4285F4" d="M3 9.5V32h8V15z"/><path fill="#34A853" d="M37 15v17h8V9.5z"/><path fill="#EA4335" d="M3 9.5V5.8C3 2.4 7 .6 9.8 2.5L24 13l14.2-10.5C41 .6 45 2.4 45 5.8v3.7L24 25z"/><path fill="#C5221F" d="M3 9.5 11 15v17H3z"/><path fill="#FBBC04" d="M37 15 45 9.5V32h-8z"/></svg><span>Gmail · rizkiamalludin99@gmail.com</span></a>
-          <a class="btn btn-ghost" href="https://instagram.com/m_rizki_amalludin" target="_blank" rel="noopener"><svg viewBox="0 0 48 48" width="42" height="42" role="img" aria-label="Logo Instagram" style="flex:none"><defs><linearGradient id="igOfficialGradient" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FFDC80"/><stop offset=".35" stop-color="#F77737"/><stop offset=".65" stop-color="#E1306C"/><stop offset="1" stop-color="#833AB4"/></linearGradient></defs><rect x="3" y="3" width="42" height="42" rx="12" fill="url(#igOfficialGradient)"/><rect x="12" y="12" width="24" height="24" rx="7" fill="none" stroke="#fff" stroke-width="3.2"/><circle cx="24" cy="24" r="5.5" fill="none" stroke="#fff" stroke-width="3.2"/><circle cx="32" cy="16.5" r="2" fill="#fff"/></svg><span>Instagram · @m_rizki_amalludin</span></a>
-        </div>
+    <section class="contact-section section-wrap" id="kontak">
+      <div class="section-heading"><p class="eyebrow">KONTAK</p><h2>Terhubung <span>dengan saya</span></h2></div>
+      <p class="contact-description">Kamu dapat menghubungi atau menemukan saya melalui tautan berikut.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:rizkiamalludin99@gmail.com"><span class="contact-label">Email</span><span>rizkiamalludin99@gmail.com</span><span aria-hidden="true">↗</span></a>
+        <a class="contact-link" href="https://instagram.com/m_rizki_amalludin" target="_blank" rel="noopener noreferrer"><span class="contact-label">Instagram</span><span>@m_rizki_amalludin</span><span aria-hidden="true">↗</span></a>
+        <a class="contact-link" href="https://github.com/rizkiamalludin" target="_blank" rel="noopener noreferrer"><span class="contact-label">GitHub</span><span>rizkiamalludin</span><span aria-hidden="true">↗</span></a>
       </div>
     </section>
   </main>
-
-  <footer class="footer">
-    <p>© <span id="year"></span> M. Rizki Amalludin. Dibuat dengan ☕ &amp; semangat.</p>
-  </footer>
-
-  <script src="script.js"></script>
-<div id="site-progress" aria-hidden="true"></div><div id="site-tools" aria-label="Alat aksesibilitas"><button type="button" id="site-theme-toggle" aria-label="Aktifkan mode gelap" title="Ganti tema" aria-pressed="false">☾</button><button type="button" id="site-top-button" aria-label="Kembali ke atas" title="Kembali ke atas" hidden>↑</button></div>
-<script id="site-wide-enhancements-script">
-(function(){
-const root=document.documentElement,themeButton=document.getElementById('site-theme-toggle'),topButton=document.getElementById('site-top-button'),progress=document.getElementById('site-progress');
-if(!themeButton||!topButton||!progress)return;
-let saved=null;try{saved=localStorage.getItem('site-theme')}catch(e){}
-function setTheme(dark){root.classList.toggle('site-dark',dark);themeButton.textContent=dark?'☀':'☾';themeButton.setAttribute('aria-pressed',String(dark));themeButton.setAttribute('aria-label',dark?'Aktifkan mode terang':'Aktifkan mode gelap');try{localStorage.setItem('site-theme',dark?'dark':'light')}catch(e){}}
-setTheme(saved?saved==='dark':false);
-themeButton.addEventListener('click',()=>setTheme(!root.classList.contains('site-dark')));
-function updateScroll(){const max=root.scrollHeight-window.innerHeight;progress.style.width=(max>0?Math.min(100,window.scrollY/max*100):0)+'%';topButton.hidden=window.scrollY<350}
-window.addEventListener('scroll',updateScroll,{passive:true});window.addEventListener('resize',updateScroll);updateScroll();
-topButton.addEventListener('click',()=>window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'}));
-})();
-</script>
+  <footer class="site-footer"><p>© <span id="year"></span> M. Rizki Amalludin</p><a href="#beranda">Kembali ke atas ↑</a></footer>
 </body>
 </html>
