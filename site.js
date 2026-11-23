@@ -5,8 +5,8 @@
   const backend = window.ProfileBackend;
   const page = document.body.dataset.page || "home";
   const translations = {
-    id: { loading: "Memuat…", unavailable: "Data belum dapat dimuat. Coba muat ulang halaman.", noProjects: "Belum ada proyek yang dipublikasikan.", noPoetry: "Belum ada puisi yang diterbitkan. Karya akan ditampilkan setelah siap dibagikan.", noPosts: "Belum ada catatan yang dipublikasikan. Catatan baru akan muncul setelah ditinjau dan diterbitkan.", noActivity: "Aktivitas GitHub belum dapat dimuat.", emptyGuestbook: "Belum ada pesan. Jadilah yang pertama menyapa.", emptyComments: "Belum ada komentar.", successContact: "Pesan berhasil disimpan ke inbox.", successGuestbook: "Pesan berhasil dikirim.", successComment: "Komentar berhasil dikirim.", failed: "Terjadi kendala. Silakan coba lagi." },
-    en: { loading: "Loading…", unavailable: "Data is unavailable. Please reload the page.", noProjects: "No projects have been published yet.", noPoetry: "No poems have been published yet. Writing will appear here when it is ready to share.", noPosts: "No posts have been published yet. New posts appear after review and publication.", noActivity: "GitHub activity is currently unavailable.", emptyGuestbook: "No messages yet. Be the first to say hello.", emptyComments: "No comments yet.", successContact: "Your message was saved to the private inbox.", successGuestbook: "Your message was sent.", successComment: "Your comment was sent.", failed: "Something went wrong. Please try again." }
+    id: { unavailable: "Data belum dapat dimuat. Coba muat ulang halaman.", noPoetry: "Belum ada puisi yang diterbitkan. Karya akan ditampilkan setelah siap dibagikan.", noPosts: "Belum ada catatan yang dipublikasikan. Catatan baru akan muncul setelah ditinjau dan diterbitkan.", successContact: "Pesan berhasil disimpan ke inbox.", failed: "Terjadi kendala. Silakan coba lagi." },
+    en: { unavailable: "Data is unavailable. Please reload the page.", noPoetry: "No poems have been published yet. Writing will appear here when it is ready to share.", noPosts: "No posts have been published yet. New posts appear after review and publication.", successContact: "Your message was saved to the private inbox.", failed: "Something went wrong. Please try again." }
   };
   let language = "id";
 
@@ -49,12 +49,6 @@
     if (className) node.className = className;
     node.textContent = text || "";
     return node;
-  }
-  function safeExternalUrl(value) {
-    try {
-      const url = new URL(value);
-      return url.protocol === "https:" ? url.href : "";
-    } catch { return ""; }
   }
   function formatDate(value) {
     const date = new Date(value);
