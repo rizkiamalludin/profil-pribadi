@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Admin — M. Rizki Amalludin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+<main class="admin-wrap">
+  <header class="admin-top"><div><div class="eyebrow">Private workspace</div><h1>Profile Admin</h1></div><a href="/" rel="noopener">← Kembali ke website</a></header>
+  <section id="auth-panel" class="panel auth-panel">
+    <div class="eyebrow">Owner access only</div><h2>Masuk ke Dashboard</h2>
+    <p class="muted">Login hanya untuk email pemilik yang sudah ditentukan. Kode verifikasi dikirim ke email.</p>
+    <form id="otp-form">
+      <div class="field"><label for="admin-email">Email pemilik</label><input id="admin-email" type="email" value="rizkiamalludin99@gmail.com" autocomplete="email" required></div>
+      <button class="btn" id="send-otp" type="submit">Kirim kode OTP</button>
+    </form>
+    <form id="verify-form" class="hidden">
+      <div class="field"><label for="admin-otp">Kode 6 digit dari email</label><input id="admin-otp" inputmode="numeric" autocomplete="one-time-code" minlength="6" maxlength="8" required></div>
+      <button class="btn" type="submit">Verifikasi &amp; masuk</button>
+    </form>
+    <div class="auth-actions"><button class="btn secondary" type="button" id="google-login">Masuk dengan Google</button></div>
+    <p id="auth-status" class="status" role="status"></p>
+    <p class="muted" style="font-size:.8rem">Google OAuth memerlukan Client ID dan Client Secret dari pemilik di pengaturan Supabase. Email OTP dapat digunakan setelah template email diatur untuk mengirim token.</p>
+  </section>
+
+  <section id="dashboard" class="hidden">
+    <div class="stats">
+      <div class="stat"><strong id="stat-content">—</strong><span>Konten tersimpan</span></div>
+      <div class="stat"><strong id="stat-inbox">—</strong><span>Pesan belum dibaca</span></div>
+      <div class="stat"><strong id="stat-guestbook">—</strong><span>Guestbook menunggu</span></div>
+      <div class="stat"><strong id="stat-comments">—</strong><span>Komentar menunggu</span></div>
+    </div>
+    <nav class="tabs" aria-label="Menu admin">
+      <button class="tab active" data-tab="content">Konten</button>
+      <button class="tab" data-tab="inbox">Inbox</button>
+      <button class="tab" data-tab="guestbook">Guestbook</button>
+      <button class="tab" data-tab="comments">Komentar</button>
+      <button class="tab" data-tab="github">GitHub Sync</button>
+    </nav>
+    <section class="panel tab-panel" id="tab-content">
+      <div class="content-grid">
+        <div><div class="table-meta"><h2 class="section-title">Daftar Konten</h2><button class="btn secondary" id="new-content" type="button">+ Konten baru</button></div><div id="content-list" class="list"></div></div>
+        <form id="content-form">
+          <h2 class="section-title">Editor konten</h2><input type="hidden" id="content-id">
+          <div class="field"><label for="content-type">Jenis</label><select id="content-type"><option value="project">Proyek</option><option value="profile">Profil</option><option value="experience">Pengalaman</option><option value="achievement">Pencapaian</option><option value="blog">Blog</option><option value="site_setting">Pengaturan website</option></select></div>
+          <div class="field"><label for="content-slug">Slug</label><input id="content-slug" required pattern="[a-z0-9][a-z0-9-]{1,79}"></div>
+          <div class="field"><label for="title-id">Judul Indonesia</label><input id="title-id" required maxlength="180"></div>
+          <div class="field"><label for="title-en">Title English</label><input id="title-en" maxlength="180"></div>
+          <div class="field"><label for="body-id">Isi Indonesia</label><textarea id="body-id" maxlength="12000"></textarea></div>
+          <div class="field"><label for="body-en">English content</label><textarea id="body-en" maxlength="12000"></textarea></div>
+          <div class="field"><label for="content-data">Data tambahan (JSON)</label><textarea id="content-data">{}</textarea></div>
+          <div class="field"><label for="content-status">Status</label><select id="content-status"><option value="draft">Draft</option><option value="published">Published</option><option value="archived">Archived</option></select></div>
+          <button class="btn" type="submit">Simpan konten</button><p class="status" id="content-status-message"></p>
+        </form>
+      </div>
+    </section>
+    <section class="panel tab-panel hidden" id="tab-inbox"><h2 class="section-title">Inbox Kontak</h2><div id="inbox-list" class="list"></div></section>
+    <section class="panel tab-panel hidden" id="tab-guestbook"><h2 class="section-title">Moderasi Guestbook</h2><div id="guestbook-admin-list" class="list"></div></section>
+    <section class="panel tab-panel hidden" id="tab-comments"><h2 class="section-title">Moderasi Komentar</h2><div id="comments-admin-list" class="list"></div></section>
+    <section class="panel tab-panel hidden" id="tab-github">
+      <h2 class="section-title">Sinkronisasi GitHub</h2>
+      <p class="muted">Ambil daftar repository publik terbaru. Repository baru disimpan sebagai draft agar tidak langsung muncul di website tanpa pemeriksaan.</p>
+      <button class="btn" id="github-sync" type="button">Sinkronkan repository publik</button>
+      <p class="status" id="github-status"></p><div id="github-results" class="github-list"></div>
+    </section>
+    <div class="row" style="margin-top:14px"><span id="session-email" class="muted"></span><button class="btn secondary" type="button" id="sign-out" style="max-width:120px">Keluar</button></div>
+  </section>
+</main>
+<script src="admin.js"></script>
+</body></html>
