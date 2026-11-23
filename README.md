@@ -1,30 +1,29 @@
-# Website Profil — M. Rizki Amalludin
+# Personal Space — M. Rizki Amalludin
 
-Website portfolio statis yang di-deploy melalui Vercel dan menggunakan Supabase untuk konten publik serta pesan.
+Website pribadi bilingual untuk memperkenalkan identitas, minat, pemikiran, puisi, pengalaman, dan aktivitas.
 
-## Struktur
-- \`index.html\` — halaman profil dan ringkasan proyek.
-- \`project.html\` — detail proyek berdasarkan slug Supabase.
-- \`journal.html\` dan \`article.html\` — daftar dan detail artikel yang berstatus published.
-- \`admin.html\` — dashboard pemilik untuk mengelola konten, inbox, moderasi, dan sinkronisasi GitHub.
-- \`backend.js\` — klien browser dengan publishable key Supabase.
-- \`site.js\` — rendering data, bahasa, tema, formulir, dan aktivitas GitHub.
-- \`style.css\` — desain responsif.
+## Teknologi
+- HTML, CSS, JavaScript vanilla (tanpa build step agar ringan).
+- Vercel untuk hosting.
+- Supabase untuk konten publik, puisi, artikel, dan formulir kontak.
+- GitHub untuk versi kode.
 
-## Backend
-Proyek Supabase: \`qkexfgadhtnkgzdfbcnf\`.
+## Halaman dan bagian
+- Beranda, Tentang, Minat, Kompetensi, Pengalaman, Pencapaian.
+- Puisi (konten bertipe `poetry` di Supabase).
+- Jurnal (konten bertipe `blog`).
+- Digital Garden, Playground, Now, Curated Library.
+- Open for Discussion (formulir kontak).
+- Admin di `/admin.html` untuk mengelola konten dan inbox.
 
-Website hanya menggunakan Supabase publishable key di browser. Jangan pernah memasukkan service-role key atau secret key ke file publik. Tabel database menggunakan Row Level Security; pengiriman kontak, guestbook, dan komentar dilakukan melalui Edge Function \`profile-public-api\` yang memiliki validasi, honeypot, batas ukuran, CORS, dan rate limiting.
+## Mengelola puisi dan artikel
+Masuk ke `/admin.html`, pilih jenis konten **Puisi** atau **Blog / Artikel**, simpan sebagai draft, periksa, lalu terbitkan. Konten publik hanya membaca baris berstatus `published`.
 
-Pesan kontak masuk ke tabel privat \`contact_messages\` dan dapat dibaca dari dashboard pemilik. Notifikasi email otomatis belum dikonfigurasi.
+## Keamanan
+- Browser menggunakan Supabase publishable key saja.
+- Tidak ada service-role key di repository.
+- Tabel tetap memakai Row Level Security; endpoint publik menangani pengiriman pesan.
+- Jangan menaruh password, OTP, token, nomor pribadi, atau rahasia di file publik.
 
-## Menulis artikel
-Masuk ke \`/admin.html\`, buat konten bertipe \`blog\`, isi judul dan isi versi Indonesia/Inggris, lalu simpan sebagai draft. Terbitkan setelah isi diperiksa. Artikel yang dipublikasikan akan tampil di \`journal.html\`.
-
-## Autentikasi admin
-Akses dashboard dibatasi ke email pemilik di kode admin dan kebijakan database. Email OTP harus dikonfigurasi di Supabase Auth. Google OAuth memerlukan Client ID/Secret yang dikonfigurasi langsung di dashboard Supabase, bukan di repository.
-
-## Keamanan dan privasi
-- Jangan publikasikan password, OTP, access token, API secret, alamat rumah, atau nomor pribadi.
-- Hindari mengirim data sensitif melalui guestbook atau kolom komentar.
-- Jangan mempromosikan branch ini ke produksi sebelum preview diuji dan pemilik menyetujui rilis.
+## Catatan
+WhatsApp dan Discord belum ditautkan karena URL akun belum dikonfirmasi. Tautan sosial lain menggunakan akun yang sudah diketahui.

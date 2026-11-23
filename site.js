@@ -5,8 +5,8 @@
   const backend = window.ProfileBackend;
   const page = document.body.dataset.page || "home";
   const translations = {
-    id: { loading: "Memuat…", unavailable: "Data belum dapat dimuat. Coba muat ulang halaman.", noProjects: "Belum ada proyek yang dipublikasikan.", noPosts: "Belum ada catatan yang dipublikasikan. Catatan baru akan muncul setelah ditinjau dan diterbitkan.", noActivity: "Aktivitas GitHub belum dapat dimuat.", emptyGuestbook: "Belum ada pesan. Jadilah yang pertama menyapa.", emptyComments: "Belum ada komentar.", successContact: "Pesan berhasil disimpan ke inbox.", successGuestbook: "Pesan berhasil dikirim.", successComment: "Komentar berhasil dikirim.", failed: "Terjadi kendala. Silakan coba lagi." },
-    en: { loading: "Loading…", unavailable: "Data is unavailable. Please reload the page.", noProjects: "No projects have been published yet.", noPosts: "No posts have been published yet. New posts appear after review and publication.", noActivity: "GitHub activity is currently unavailable.", emptyGuestbook: "No messages yet. Be the first to say hello.", emptyComments: "No comments yet.", successContact: "Your message was saved to the private inbox.", successGuestbook: "Your message was sent.", successComment: "Your comment was sent.", failed: "Something went wrong. Please try again." }
+    id: { loading: "Memuat…", unavailable: "Data belum dapat dimuat. Coba muat ulang halaman.", noProjects: "Belum ada proyek yang dipublikasikan.", noPoetry: "Belum ada puisi yang diterbitkan. Karya akan ditampilkan setelah siap dibagikan.", noPosts: "Belum ada catatan yang dipublikasikan. Catatan baru akan muncul setelah ditinjau dan diterbitkan.", noActivity: "Aktivitas GitHub belum dapat dimuat.", emptyGuestbook: "Belum ada pesan. Jadilah yang pertama menyapa.", emptyComments: "Belum ada komentar.", successContact: "Pesan berhasil disimpan ke inbox.", successGuestbook: "Pesan berhasil dikirim.", successComment: "Komentar berhasil dikirim.", failed: "Terjadi kendala. Silakan coba lagi." },
+    en: { loading: "Loading…", unavailable: "Data is unavailable. Please reload the page.", noProjects: "No projects have been published yet.", noPoetry: "No poems have been published yet. Writing will appear here when it is ready to share.", noPoetry: "Belum ada puisi yang diterbitkan. Karya akan ditampilkan setelah siap dibagikan.", noPosts: "No posts have been published yet. New posts appear after review and publication.", noActivity: "GitHub activity is currently unavailable.", emptyGuestbook: "No messages yet. Be the first to say hello.", emptyComments: "No comments yet.", successContact: "Your message was saved to the private inbox.", successGuestbook: "Your message was sent.", successComment: "Your comment was sent.", failed: "Something went wrong. Please try again." }
   };
   let language = "id";
 
@@ -27,7 +27,7 @@
     if (button) { button.textContent = language === "id" ? "EN" : "ID"; button.setAttribute("aria-label", language === "id" ? "Switch language to English" : "Ubah bahasa ke Indonesia"); }
     setStored("profile-language", language);
     if (page === "home") {
-      loadProjects(); loadLatestPosts(); loadGuestbook(); loadComments();
+      loadProjects(); loadPoetry(); loadLatestPosts(); loadGuestbook(); loadComments();
     } else if (page === "journal") loadJournal();
     else if (page === "project") loadProjectDetail();
     else if (page === "article") loadArticle();
@@ -104,6 +104,29 @@
     } catch (error) {
       console.warn(error);
       grid.replaceChildren(createText("p", "empty-state", t("unavailable")));
+    }
+  }
+
+
+  async function loadPoetry() {
+    const container = $("#poetry-grid");
+    if (!container || !backend) return;
+    try {
+      const rows = await backend.readTable("profile_content?select=slug,title_id,title_en,body_id,body_en,created_at,updated_at,data&content_type=eq.poetry&status=eq.published&order=sort_order.asc,updated_at.desc");
+      container.replaceChildren();
+      if (!rows.length) { container.append(createText("p", "empty-state", language === "en" ? "No poems have been published yet. Writing will appear here when it is ready to share." : t("noPoetry"))); return; }
+      rows.forEach(row => {
+        const card = createText("article", "poem-card", "");
+        const label = createText("p", "eyebrow", language === "en" ? "POETRY" : "PUISI");
+        const title = createText("h3", "", language === "en" ? (row.title_en || row.title_id) : row.title_id);
+        const body = createText("p", "poem-body", language === "en" ? (row.body_en || row.body_id) : row.body_id);
+        const date = createText("time", "muted", formatDate(row.updated_at || row.created_at));
+        card.append(label, title, body, date);
+        container.append(card);
+      });
+    } catch (error) {
+      console.warn(error);
+      container.replaceChildren(createText("p", "empty-state", t("unavailable")));
     }
   }
 
@@ -259,7 +282,7 @@
     $("#theme-toggle")?.addEventListener("click", () => applyTheme(document.documentElement.dataset.theme === "light" ? "dark" : "light"));
     $("#language-toggle")?.addEventListener("click", () => applyLanguage(language === "id" ? "en" : "id"));
     if (page === "home") {
-      loadProjects(); loadLatestPosts(); loadActivity(); loadGuestbook(); loadComments();
+      loadProjects(); loadPoetry(); loadLatestPosts(); loadActivity(); loadGuestbook(); loadComments();
       bindPublicForm("contact-form", "contact", "contact-status", ["name","email","subject","message"], "successContact");
       bindPublicForm("guestbook-form", "guestbook", "guestbook-status", ["nickname","message"], "successGuestbook");
       bindPublicForm("comment-form", "comment", "comment-status", ["nickname","message"], "successComment");
