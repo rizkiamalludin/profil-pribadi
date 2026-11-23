@@ -78,3 +78,24 @@ h1 span,h2 span{color:var(--accent-strong)}
 .certificate-figure{margin:28px 0 0;padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--surface-soft)}
 .certificate-image{display:block;width:100%;max-width:760px;height:auto;margin:0 auto;border-radius:8px;object-fit:contain}
 .certificate-figure figcaption{margin-top:12px;color:var(--muted);font-size:.85rem;text-align:center}
+
+/* Accessibility and project showcase improvements */
+.skip-link{position:fixed;top:12px;left:12px;z-index:30;padding:10px 14px;border-radius:8px;background:var(--accent);color:#10182d;font-weight:700;text-decoration:none;transform:translateY(-160%);transition:transform .2s}
+.skip-link:focus{transform:translateY(0)}
+.project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.project-card{display:flex;min-height:250px;flex-direction:column;align-items:flex-start;padding:26px;border:1px solid var(--line);border-radius:18px;background:var(--surface)}
+.project-card h3{margin:20px 0 8px;font-size:1.45rem}
+.project-card p{margin:0;color:var(--muted)}
+.project-topline{display:flex;width:100%;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.project-category{color:var(--accent);font-size:.72rem;font-weight:700;letter-spacing:.12em}
+.project-status{padding:4px 9px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:.72rem}
+.project-link{display:inline-flex;gap:10px;align-items:center;margin-top:auto;padding-top:24px;color:var(--accent-strong);font-weight:700;text-decoration:none}
+.project-link:hover{text-decoration:underline}
+.project-card-note{background:var(--surface-soft)}
+@media(max-width:560px){
+  .site-header{flex-wrap:wrap;min-height:0;padding-block:12px}
+  .brand{margin-right:auto}
+  .navigation{order:3;width:100%;gap:20px;overflow-x:auto;padding:4px 2px 8px;scrollbar-width:thin}
+  .navigation a{flex:0 0 auto;white-space:nowrap}
+  .project-grid{grid-template-columns:1fr}
+}
