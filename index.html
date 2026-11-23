@@ -4,116 +4,271 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b1020">
-  <meta name="description" content="Profil pribadi M. Rizki Amalludin: pelajar yang tertarik pada teknologi, AI, bisnis, ekonomi, pertanian, dan pengembangan proyek digital.">
+  <meta name="description" content="Portofolio M. Rizki Amalludin: perjalanan belajar, proyek digital, teknologi, AI, bisnis, ekonomi, dan pertanian.">
   <meta name="author" content="M. Rizki Amalludin">
   <meta name="robots" content="index, follow">
-  <meta property="og:type" content="profile">
-  <meta property="og:title" content="M. Rizki Amalludin — Profil Pribadi">
+  <link rel="canonical" href="https://myprofil-rizki.vercel.app/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="M. Rizki Amalludin — Personal Portfolio">
   <meta property="og:description" content="Mengenal minat, perjalanan belajar, karya, dan proyek digital M. Rizki Amalludin.">
+  <meta property="og:url" content="https://myprofil-rizki.vercel.app/">
   <meta property="og:image" content="foto-saya.webp">
-  <meta name="color-scheme" content="dark light">
-  <title>M. Rizki Amalludin — Profil Pribadi</title>
+  <meta name="twitter:card" content="summary">
+  <title>M. Rizki Amalludin — Personal Portfolio</title>
   <link rel="icon" type="image/png" href="favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <script src="backend.js" defer></script>
+  <script src="site.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "M. Rizki Amalludin",
+    "url": "https://myprofil-rizki.vercel.app/",
+    "sameAs": [
+      "https://github.com/rizkiamalludin",
+      "https://instagram.com/m_rizki_amalludin"
+    ]
+  }
+  </script>
 </head>
-<body>
-  <a class="skip-link" href="#main-content">Lewati ke konten utama</a>
+<body data-page="home">
+  <a class="skip-link" href="#main-content" data-id="Lewati ke konten utama" data-en="Skip to main content">Lewati ke konten utama</a>
   <header class="site-header">
-    <a class="brand" href="#beranda" aria-label="M. Rizki Amalludin, beranda"><img src="logo.svg" alt="" width="180" height="48"></a>
-    <nav class="navigation" aria-label="Navigasi utama">
-      <a href="#tentang">Tentang</a><a href="#proyek">Proyek</a><a href="#perjalanan">Perjalanan</a><a href="#prestasi">Prestasi</a><a href="#kontak">Kontak</a>
+    <a class="brand" href="#beranda" aria-label="M. Rizki Amalludin — beranda">
+      <img src="logo.svg" alt="M. Rizki Amalludin" width="180" height="48">
+    </a>
+    <nav class="main-nav" aria-label="Navigasi utama">
+      <a href="#tentang" data-id="Tentang" data-en="About">Tentang</a>
+      <a href="#proyek" data-id="Proyek" data-en="Projects">Proyek</a>
+      <a href="#perjalanan" data-id="Perjalanan" data-en="Journey">Perjalanan</a>
+      <a href="#kompetensi" data-id="Kompetensi" data-en="Skills">Kompetensi</a>
+      <a href="journal.html" data-id="Jurnal" data-en="Journal">Jurnal</a>
+      <a href="#kontak" data-id="Kontak" data-en="Contact">Kontak</a>
     </nav>
-    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Aktifkan tema terang" aria-pressed="false"><span aria-hidden="true">☼</span></button>
+    <div class="header-tools">
+      <button class="tool-button" id="language-toggle" type="button" aria-label="Change language">EN</button>
+      <button class="tool-button" id="theme-toggle" type="button" aria-label="Aktifkan tema terang" aria-pressed="false">☼</button>
+    </div>
   </header>
 
   <main id="main-content">
     <section class="hero section-wrap" id="beranda">
       <div class="hero-copy">
-        <p class="eyebrow">PROFIL PRIBADI</p>
+        <p class="eyebrow" data-id="PROFIL PRIBADI" data-en="PERSONAL PORTFOLIO">PROFIL PRIBADI</p>
         <h1>M. Rizki <span>Amalludin</span></h1>
-        <p class="hero-role">Pelajar · Tertarik pada teknologi dan AI</p>
-        <p class="hero-description">Saya tertarik mempelajari teknologi, kecerdasan buatan, bisnis, ekonomi, pertanian, dan pengembangan proyek digital.</p>
-        <div class="hero-actions"><a class="button button-primary" href="#tentang">Kenali saya</a><a class="button button-secondary" href="#kontak">Hubungi</a></div>
+        <p class="hero-role" data-id="Pelajar · Teknologi · Pengembangan proyek digital" data-en="Student · Technology · Digital project building">Pelajar · Teknologi · Pengembangan proyek digital</p>
+        <p class="hero-description" data-id="Saya senang mempelajari teknologi, kecerdasan buatan, bisnis, ekonomi, dan pertanian. Website ini menjadi tempat untuk mencatat proses belajar dan karya yang sedang saya bangun." data-en="I enjoy learning about technology, artificial intelligence, business, economics, and agriculture. This website documents my learning process and the work I am building.">Saya senang mempelajari teknologi, kecerdasan buatan, bisnis, ekonomi, dan pertanian. Website ini menjadi tempat untuk mencatat proses belajar dan karya yang sedang saya bangun.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#proyek" data-id="Lihat proyek" data-en="Explore projects">Lihat proyek</a>
+          <a class="button button-secondary" href="#kontak" data-id="Hubungi saya" data-en="Get in touch">Hubungi saya</a>
+        </div>
+        <p class="hero-note" data-id="Belajar, mencoba, mengevaluasi, lalu memperbaiki." data-en="Learn, experiment, reflect, and improve.">Belajar, mencoba, mengevaluasi, lalu memperbaiki.</p>
       </div>
-      <div class="profile-frame">
-        <div class="profile-orbit" aria-hidden="true"></div>
-        <img class="profile-photo" src="foto-saya.webp" alt="Foto M. Rizki Amalludin" width="420" height="520" fetchpriority="high">
-        <p class="photo-caption">M. Rizki Amalludin</p>
-      </div>
+      <figure class="profile-frame">
+        <img class="profile-photo" src="foto-saya.webp" alt="Foto profil M. Rizki Amalludin" width="420" height="520" fetchpriority="high">
+        <figcaption>M. Rizki Amalludin</figcaption>
+      </figure>
     </section>
 
     <section class="content-section section-wrap" id="tentang">
-      <div class="section-heading"><p class="eyebrow">PERKENALAN</p><h2>Tentang <span>saya</span></h2></div>
-      <div class="about-panel">
-        <p>Saya seorang pelajar yang senang mempelajari hal baru dan mencoba menuangkan ide menjadi sesuatu yang nyata. Saat ini, ketertarikan saya banyak berada di bidang teknologi, AI, dan proyek digital.</p>
-        <p>Website ini menjadi tempat untuk memperkenalkan diri dan mendokumentasikan hal-hal yang memang sedang saya pelajari atau kerjakan. Isinya akan diperbarui seiring perkembangan saya.</p>
+      <div class="section-heading">
+        <p class="eyebrow" data-id="PERKENALAN" data-en="INTRODUCTION">PERKENALAN</p>
+        <h2 data-id="Tentang saya" data-en="About me">Tentang saya</h2>
+      </div>
+      <div class="about-grid">
+        <article class="surface-card">
+          <h3 data-id="Mengenal saya" data-en="A little about me">Mengenal saya</h3>
+          <p data-id="Saya seorang pelajar yang tertarik pada teknologi, AI, bisnis, ekonomi, pertanian, dan pengembangan proyek digital. Saya suka mengeksplorasi ide dan belajar melalui praktik." data-en="I am a student interested in technology, AI, business, economics, agriculture, and digital projects. I enjoy exploring ideas and learning by building things.">Saya seorang pelajar yang tertarik pada teknologi, AI, bisnis, ekonomi, pertanian, dan pengembangan proyek digital. Saya suka mengeksplorasi ide dan belajar melalui praktik.</p>
+        </article>
+        <article class="surface-card">
+          <h3 data-id="Cara saya belajar" data-en="How I learn">Cara saya belajar</h3>
+          <p data-id="Saya berusaha mengubah materi yang dipelajari menjadi eksperimen kecil, lalu memperbaikinya berdasarkan hasil dan kesalahan yang ditemukan." data-en="I try to turn what I learn into small experiments, then improve them based on results and mistakes.">Saya berusaha mengubah materi yang dipelajari menjadi eksperimen kecil, lalu memperbaikinya berdasarkan hasil dan kesalahan yang ditemukan.</p>
+        </article>
       </div>
     </section>
 
     <section class="content-section section-wrap" id="proyek">
-      <div class="section-heading"><p class="eyebrow">KARYA</p><h2>Proyek <span>pilihan</span></h2></div>
-      <div class="project-grid">
-        <article class="project-card">
-          <div class="project-topline"><span class="project-category">PLATFORM DIGITAL</span><span class="project-status">Dalam pengembangan</span></div>
-          <h3>BantuDunia</h3>
-          <p>Gagasan platform digital yang mengumpulkan berbagai alat dan layanan bermanfaat dalam satu tempat, dengan perhatian pada aksesibilitas dan kebutuhan pengguna yang beragam.</p>
-          <a class="project-link" href="https://bantu-dunia.vercel.app/" target="_blank" rel="noopener noreferrer">Kunjungi proyek <span aria-hidden="true">↗</span></a>
-        </article>
-        <article class="project-card project-card-note">
-          <span class="project-category">RUANG BERKEMBANG</span>
-          <h3>Proyek berikutnya</h3>
-          <p>Proyek lain akan ditambahkan setelah memiliki hasil yang siap dipublikasikan, dokumentasi yang jelas, dan tautan yang dapat diakses.</p>
-        </article>
+      <div class="section-heading section-heading-row">
+        <div>
+          <p class="eyebrow" data-id="KARYA" data-en="SELECTED WORK">KARYA</p>
+          <h2 data-id="Proyek pilihan" data-en="Selected projects">Proyek pilihan</h2>
+          <p class="section-intro" data-id="Proyek yang pernah atau sedang saya kembangkan. Status mengikuti informasi yang tersedia." data-en="Projects I have worked on or am currently developing. Status reflects the available information.">Proyek yang pernah atau sedang saya kembangkan. Status mengikuti informasi yang tersedia.</p>
+        </div>
+        <span class="count-chip" id="project-count" aria-live="polite">—</span>
+      </div>
+      <div class="project-grid" id="project-grid" aria-live="polite">
+        <p class="muted" data-id="Memuat daftar proyek…" data-en="Loading projects…">Memuat daftar proyek…</p>
       </div>
     </section>
 
     <section class="content-section section-wrap" id="perjalanan">
-      <div class="section-heading"><p class="eyebrow">PROSES</p><h2>Perjalanan <span>belajar</span></h2></div>
-      <div class="journey-panel">
-        <div class="journey-line" aria-hidden="true"></div>
-        <div class="journey-item"><span class="journey-dot" aria-hidden="true"></span><div><p class="journey-label">FOKUS SAAT INI</p><h3>Belajar dan bereksperimen</h3><p>Saya sedang memperluas pemahaman di bidang teknologi, AI, pemrograman, bisnis, ekonomi, dan pertanian. Catatan perkembangan akan ditambahkan berdasarkan pengalaman nyata.</p></div></div>
+      <div class="section-heading">
+        <p class="eyebrow" data-id="PROSES" data-en="THE PROCESS">PROSES</p>
+        <h2 data-id="Perjalanan belajar" data-en="Learning journey">Perjalanan belajar</h2>
+      </div>
+      <div class="timeline">
+        <article class="timeline-item">
+          <span class="timeline-index">01</span>
+          <div>
+            <h3 data-id="Membangun proyek digital" data-en="Building digital projects">Membangun proyek digital</h3>
+            <p data-id="Mencoba mengubah ide menjadi website dan produk digital, mulai dari rancangan sederhana hingga fitur yang dapat diuji." data-en="Turning ideas into websites and digital products, from simple prototypes to features that can be tested.">Mencoba mengubah ide menjadi website dan produk digital, mulai dari rancangan sederhana hingga fitur yang dapat diuji.</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <span class="timeline-index">02</span>
+          <div>
+            <h3 data-id="Belajar pemrograman dan AI" data-en="Learning programming and AI">Belajar pemrograman dan AI</h3>
+            <p data-id="Memperdalam dasar pemrograman, memahami penggunaan API, dan bereksperimen dengan alat AI serta otomasi." data-en="Strengthening programming fundamentals, learning how APIs work, and experimenting with AI and automation tools.">Memperdalam dasar pemrograman, memahami penggunaan API, dan bereksperimen dengan alat AI serta otomasi.</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <span class="timeline-index">03</span>
+          <div>
+            <h3 data-id="Belajar melalui tanggung jawab" data-en="Learning through responsibility">Belajar melalui tanggung jawab</h3>
+            <p data-id="Mendapat pengalaman menjalankan tugas sekretariat organisasi dan membantu proses belajar orang lain." data-en="Gaining experience with organizational secretariat responsibilities and helping others learn.">Mendapat pengalaman menjalankan tugas sekretariat organisasi dan membantu proses belajar orang lain.</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <span class="timeline-index">04</span>
+          <div>
+            <h3 data-id="Memperluas wawasan" data-en="Expanding my perspective">Memperluas wawasan</h3>
+            <p data-id="Terus mempelajari bisnis, ekonomi, dan pertanian sebagai bidang yang ingin saya pahami lebih dalam." data-en="Continuing to explore business, economics, and agriculture as fields I want to understand better.">Terus mempelajari bisnis, ekonomi, dan pertanian sebagai bidang yang ingin saya pahami lebih dalam.</p>
+          </div>
+        </article>
       </div>
     </section>
 
-    <section class="content-section section-wrap" id="minat">
-      <div class="section-heading"><p class="eyebrow">HAL YANG SAYA MINATI</p><h2>Bidang <span>ketertarikan</span></h2></div>
-      <div class="interest-grid">
-        <article class="interest-card"><span class="interest-number">01</span><h3>Teknologi &amp; AI</h3><p>Mempelajari perkembangan teknologi dan kecerdasan buatan.</p></article>
-        <article class="interest-card"><span class="interest-number">02</span><h3>Proyek digital</h3><p>Mengeksplorasi ide dan proses pembuatan website atau produk digital.</p></article>
-        <article class="interest-card"><span class="interest-number">03</span><h3>Bisnis &amp; ekonomi</h3><p>Mempelajari cara kerja bisnis dan kegiatan ekonomi.</p></article>
-        <article class="interest-card"><span class="interest-number">04</span><h3>Pertanian</h3><p>Memiliki ketertarikan pada bidang pertanian.</p></article>
+    <section class="content-section section-wrap" id="kompetensi">
+      <div class="section-heading">
+        <p class="eyebrow" data-id="KEMAMPUAN" data-en="SKILLS">KEMAMPUAN</p>
+        <h2 data-id="Teknologi dan minat" data-en="Technology and interests">Teknologi dan minat</h2>
+        <p class="section-intro" data-id="Daftar ini menunjukkan alat yang pernah saya gunakan dan hal yang masih saya pelajari, bukan penilaian tingkat keahlian." data-en="This list separates tools I have used from topics I am still learning; it is not a proficiency rating.">Daftar ini menunjukkan alat yang pernah saya gunakan dan hal yang masih saya pelajari, bukan penilaian tingkat keahlian.</p>
+      </div>
+      <div class="skills-grid">
+        <article class="surface-card">
+          <p class="skill-label" data-id="PERNAH DIGUNAKAN" data-en="USED IN PROJECTS">PERNAH DIGUNAKAN</p>
+          <h3 data-id="Tools dan teknologi" data-en="Tools and technology">Tools dan teknologi</h3>
+          <div class="tag-list"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Python</span><span>GitHub</span><span>Vercel</span><span>Supabase</span><span>Make</span><span>Figma</span><span>Canva</span></div>
+        </article>
+        <article class="surface-card">
+          <p class="skill-label" data-id="SEDANG DIPELAJARI" data-en="CURRENTLY LEARNING">SEDANG DIPELAJARI</p>
+          <h3 data-id="Bidang eksplorasi" data-en="Areas of exploration">Bidang eksplorasi</h3>
+          <div class="tag-list"><span data-id="Dasar pemrograman" data-en="Programming fundamentals">Dasar pemrograman</span><span>API integration</span><span>AI tools</span><span data-id="Basis data" data-en="Databases">Basis data</span><span data-id="Analisis bisnis" data-en="Business analysis">Analisis bisnis</span><span data-id="Ekonomi" data-en="Economics">Ekonomi</span><span data-id="Pertanian" data-en="Agriculture">Pertanian</span></div>
+        </article>
       </div>
     </section>
 
     <section class="content-section section-wrap" id="prestasi">
-      <div class="section-heading"><p class="eyebrow">PENGHARGAAN &amp; PARTISIPASI</p><h2>Prestasi <span>dan sertifikat</span></h2></div>
+      <div class="section-heading">
+        <p class="eyebrow" data-id="PENGHARGAAN & PARTISIPASI" data-en="RECOGNITION & PARTICIPATION">PENGHARGAAN &amp; PARTISIPASI</p>
+        <h2 data-id="Sertifikat dan pencapaian" data-en="Certificates and achievements">Sertifikat dan pencapaian</h2>
+      </div>
       <article class="achievement-card">
-        <div class="achievement-top"><span class="achievement-tag">PESERTA · TINGKAT NASIONAL</span><span class="achievement-date">2026</span></div>
+        <div class="achievement-top"><span class="skill-label" data-id="PESERTA · TINGKAT NASIONAL" data-en="PARTICIPANT · NATIONAL EVENT">PESERTA · TINGKAT NASIONAL</span><span class="muted">2026</span></div>
         <h3>Lomba Cipta Puisi (LCP 49)</h3>
-        <p class="achievement-poem">“Ketika Waktu Tak Mau Kembali”</p>
-        <p class="achievement-description">Mengikuti Event Menulis Nasional dengan tema “Penyesalan”, diselenggarakan pada periode September–Oktober 2026. Sertifikat mencantumkan lebih dari 600 peserta.</p>
-        <dl class="achievement-details"><div><dt>Penyelenggara</dt><dd>Event Menulis Nasional</dd></div><div><dt>Bidang</dt><dd>Cipta puisi</dd></div><div><dt>Status</dt><dd>Peserta</dd></div></dl>
-        <p class="achievement-note">Sertifikat penghargaan telah diterima. Informasi ditampilkan sesuai keterangan pada dokumen.</p>
+        <p class="achievement-subtitle">“Ketika Waktu Tak Mau Kembali”</p>
+        <p data-id="Mengikuti Event Menulis Nasional dengan tema “Penyesalan”, diselenggarakan pada periode September–Oktober 2026. Sertifikat mencantumkan lebih dari 600 peserta." data-en="Participated in a national writing event themed “Regret”, held during September–October 2026. The certificate states that more than 600 participants took part.">Mengikuti Event Menulis Nasional dengan tema “Penyesalan”, diselenggarakan pada periode September–Oktober 2026. Sertifikat mencantumkan lebih dari 600 peserta.</p>
+        <dl class="achievement-facts">
+          <div><dt data-id="Penyelenggara" data-en="Organizer">Penyelenggara</dt><dd>Event Menulis Nasional</dd></div>
+          <div><dt data-id="Bidang" data-en="Category">Bidang</dt><dd data-id="Cipta puisi" data-en="Poetry writing">Cipta puisi</dd></div>
+          <div><dt data-id="Status" data-en="Status">Status</dt><dd data-id="Peserta" data-en="Participant">Peserta</dd></div>
+        </dl>
         <figure class="certificate-figure">
-          <img class="certificate-image" src="sertifikat-rizki-disamarkan.jpg" alt="Sertifikat peserta Lomba Cipta Puisi LCP 49, Event Menulis Nasional, 2026" loading="lazy">
-          <figcaption>Sertifikat peserta Lomba Cipta Puisi (LCP 49)</figcaption>
+          <a href="sertifikat-rizki-disamarkan.jpg" target="_blank" rel="noopener noreferrer">
+            <img src="sertifikat-rizki-disamarkan.jpg" alt="Sertifikat peserta Lomba Cipta Puisi LCP 49, Event Menulis Nasional, 2026" loading="lazy">
+          </a>
+          <figcaption data-id="Sertifikat peserta Lomba Cipta Puisi (LCP 49)" data-en="LCP 49 poetry competition participation certificate">Sertifikat peserta Lomba Cipta Puisi (LCP 49)</figcaption>
         </figure>
       </article>
     </section>
+
+    <section class="content-section section-wrap" id="jurnal">
+      <div class="section-heading section-heading-row">
+        <div>
+          <p class="eyebrow" data-id="CATATAN" data-en="WRITING">CATATAN</p>
+          <h2 data-id="Jurnal dan pemikiran" data-en="Journal and thoughts">Jurnal dan pemikiran</h2>
+          <p class="section-intro" data-id="Tempat berbagi proses belajar, pengalaman proyek, dan ide yang layak didokumentasikan." data-en="A place to share learning notes, project experiences, and ideas worth documenting.">Tempat berbagi proses belajar, pengalaman proyek, dan ide yang layak didokumentasikan.</p>
+        </div>
+        <a class="text-link" href="journal.html" data-id="Buka jurnal →" data-en="Open journal →">Buka jurnal →</a>
+      </div>
+      <div class="post-grid" id="latest-posts" aria-live="polite">
+        <p class="muted" data-id="Memuat catatan…" data-en="Loading notes…">Memuat catatan…</p>
+      </div>
+    </section>
+
+    <section class="content-section section-wrap" id="aktivitas">
+      <div class="section-heading">
+        <p class="eyebrow" data-id="JEJAK PUBLIK" data-en="PUBLIC ACTIVITY">JEJAK PUBLIK</p>
+        <h2 data-id="Aktivitas GitHub" data-en="GitHub activity">Aktivitas GitHub</h2>
+        <p class="section-intro" data-id="Repository publik yang diperbarui terakhir kali. Data diambil langsung dari profil GitHub." data-en="Recently updated public repositories, loaded from the GitHub profile.">Repository publik yang diperbarui terakhir kali. Data diambil langsung dari profil GitHub.</p>
+      </div>
+      <div class="activity-grid" id="github-activity" aria-live="polite"><p class="muted" data-id="Memuat aktivitas…" data-en="Loading activity…">Memuat aktivitas…</p></div>
+      <a class="text-link" href="https://github.com/rizkiamalludin" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+    </section>
+
+    <section class="content-section section-wrap" id="ruang-interaksi">
+      <div class="section-heading">
+        <p class="eyebrow" data-id="RUANG INTERAKSI" data-en="COMMUNITY">RUANG INTERAKSI</p>
+        <h2 data-id="Tinggalkan pesan" data-en="Leave a message">Tinggalkan pesan</h2>
+        <p class="section-intro" data-id="Pesan yang ditampilkan dapat dibaca pengunjung lain. Jangan kirim informasi pribadi atau rahasia." data-en="Displayed messages can be read by other visitors. Do not share private or sensitive information.">Pesan yang ditampilkan dapat dibaca pengunjung lain. Jangan kirim informasi pribadi atau rahasia.</p>
+      </div>
+      <div class="interaction-grid">
+        <article class="surface-card">
+          <h3 data-id="Guestbook" data-en="Guestbook">Guestbook</h3>
+          <form id="guestbook-form" class="stack-form">
+            <label><span data-id="Nama panggilan" data-en="Nickname">Nama panggilan</span><input name="nickname" minlength="2" maxlength="40" required autocomplete="nickname"></label>
+            <label><span data-id="Pesan singkat" data-en="Short message">Pesan singkat</span><textarea name="message" minlength="2" maxlength="500" required></textarea></label>
+            <label class="honeypot" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+            <button type="submit" class="button button-primary" data-id="Kirim pesan" data-en="Send message">Kirim pesan</button>
+            <p class="form-status" id="guestbook-status" aria-live="polite"></p>
+          </form>
+          <div class="public-list" id="guestbook-list"></div>
+        </article>
+        <article class="surface-card">
+          <h3 data-id="Diskusi" data-en="Discussion">Diskusi</h3>
+          <form id="comment-form" class="stack-form">
+            <label><span data-id="Nama panggilan" data-en="Nickname">Nama panggilan</span><input name="nickname" minlength="2" maxlength="40" required autocomplete="nickname"></label>
+            <label><span data-id="Komentar" data-en="Comment">Komentar</span><textarea name="message" minlength="2" maxlength="1500" required></textarea></label>
+            <label class="honeypot" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+            <button type="submit" class="button button-primary" data-id="Kirim komentar" data-en="Post comment">Kirim komentar</button>
+            <p class="form-status" id="comment-status" aria-live="polite"></p>
+          </form>
+          <div class="public-list" id="comments-list"></div>
+        </article>
+      </div>
+    </section>
+
     <section class="contact-section section-wrap" id="kontak">
-      <div class="section-heading"><p class="eyebrow">KONTAK</p><h2>Terhubung <span>dengan saya</span></h2></div>
-      <p class="contact-description">Kamu dapat menghubungi atau menemukan saya melalui tautan berikut.</p>
-      <div class="contact-links">
-        <a class="contact-link" href="mailto:rizkiamalludin99@gmail.com"><span class="contact-label">Email</span><span>rizkiamalludin99@gmail.com</span><span aria-hidden="true">↗</span></a>
-        <a class="contact-link" href="https://instagram.com/m_rizki_amalludin" target="_blank" rel="noopener noreferrer"><span class="contact-label">Instagram</span><span>@m_rizki_amalludin</span><span aria-hidden="true">↗</span></a>
-        <a class="contact-link" href="https://github.com/rizkiamalludin" target="_blank" rel="noopener noreferrer"><span class="contact-label">GitHub</span><span>rizkiamalludin</span><span aria-hidden="true">↗</span></a>
+      <div class="section-heading">
+        <p class="eyebrow" data-id="KONTAK" data-en="CONTACT">KONTAK</p>
+        <h2 data-id="Mari terhubung" data-en="Let's connect">Mari terhubung</h2>
+        <p class="section-intro" data-id="Untuk pertanyaan atau ide kolaborasi, kirim pesan melalui formulir ini atau gunakan tautan publik." data-en="For questions or collaboration ideas, send a message using this form or use the public links.">Untuk pertanyaan atau ide kolaborasi, kirim pesan melalui formulir ini atau gunakan tautan publik.</p>
+      </div>
+      <div class="contact-grid">
+        <form id="contact-form" class="surface-card stack-form">
+          <label><span data-id="Nama" data-en="Name">Nama</span><input type="text" name="name" minlength="2" maxlength="80" required autocomplete="name"></label>
+          <label><span>Email</span><input type="email" name="email" maxlength="254" required autocomplete="email"></label>
+          <label><span data-id="Subjek" data-en="Subject">Subjek</span><input type="text" name="subject" minlength="3" maxlength="140" required></label>
+          <label><span data-id="Pesan" data-en="Message">Pesan</span><textarea name="message" minlength="10" maxlength="5000" required></textarea></label>
+          <label class="honeypot" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+          <button class="button button-primary" type="submit" data-id="Kirim pesan" data-en="Send message">Kirim pesan</button>
+          <p class="form-status" id="contact-status" aria-live="polite"></p>
+          <p class="micro-note" data-id="Pesan disimpan di inbox pribadi website. Notifikasi email otomatis belum diaktifkan." data-en="Messages are stored in the website owner's private inbox. Automatic email notifications are not enabled.">Pesan disimpan di inbox pribadi website. Notifikasi email otomatis belum diaktifkan.</p>
+        </form>
+        <div class="surface-card contact-details">
+          <h3 data-id="Tautan publik" data-en="Public links">Tautan publik</h3>
+          <a href="mailto:rizkiamalludin99@gmail.com"><span>Email</span><strong>rizkiamalludin99@gmail.com</strong><span aria-hidden="true">↗</span></a>
+          <a href="https://instagram.com/m_rizki_amalludin" target="_blank" rel="noopener noreferrer"><span>Instagram</span><strong>@m_rizki_amalludin</strong><span aria-hidden="true">↗</span></a>
+          <a href="https://github.com/rizkiamalludin" target="_blank" rel="noopener noreferrer"><span>GitHub</span><strong>rizkiamalludin</strong><span aria-hidden="true">↗</span></a>
+        </div>
       </div>
     </section>
   </main>
-  <footer class="site-footer"><p>© <span id="year"></span> M. Rizki Amalludin</p><a href="#beranda">Kembali ke atas ↑</a></footer>
+
+  <footer class="site-footer section-wrap">
+    <p>© <span id="year"></span> M. Rizki Amalludin</p>
+    <div><a href="admin.html" data-id="Admin" data-en="Admin">Admin</a><a href="#beranda" data-id="Kembali ke atas ↑" data-en="Back to top ↑">Kembali ke atas ↑</a></div>
+  </footer>
 </body>
 </html>
