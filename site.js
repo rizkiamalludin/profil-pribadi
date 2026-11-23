@@ -29,7 +29,6 @@
     if (page === "home") {
       loadPoetry(); loadLatestPosts();
     } else if (page === "journal") loadJournal();
-    else if (page === "project") loadProjectDetail();
     else if (page === "article") loadArticle();
   }
 
