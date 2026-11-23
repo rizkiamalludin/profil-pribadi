@@ -257,3 +257,7 @@ h1,h2,h3{font-family:"Playfair Display",Georgia,serif;letter-spacing:-.025em}
 @media(max-width:700px){.site-header{flex-wrap:wrap;padding-block:10px}.brand{margin-right:auto}.main-nav{order:3;width:100%;padding:6px 0 8px}.hero{grid-template-columns:1fr;min-height:auto;padding-block:64px 76px}.hero-copy{text-align:center}.hero-description{margin-inline:auto}.hero-actions{justify-content:center}.profile-frame{width:min(78%,310px)}.contact-layout{grid-template-columns:1fr}.poetry-grid,.garden-grid{grid-template-columns:1fr}}
 @media(max-width:520px){.skills-grid,.interest-grid{grid-template-columns:1fr}.achievement-facts{grid-template-columns:1fr 1fr}.header-tools{gap:6px}.tool-button{width:36px;height:36px}.content-section,.contact-section{padding-block:66px}.hero-copy h1{font-size:clamp(3rem,14vw,4.6rem)}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+.social-symbol svg{width:20px;height:20px;display:block;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.social-symbol .icon-fill{fill:currentColor;stroke:none}
+.social-symbol.instagram .icon-fill{fill:currentColor}
