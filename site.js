@@ -167,7 +167,7 @@
       const observer = new IntersectionObserver(entries => entries.forEach(entry => {
         if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); }
       }), { threshold: 0.08 });
-      $(".surface-card,.post-card,.timeline-item,.poem-card,.garden-note").forEach(node => observer.observe(node));
+      $$(".surface-card,.post-card,.timeline-item,.poem-card,.garden-note").forEach(node => observer.observe(node));
     }
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
