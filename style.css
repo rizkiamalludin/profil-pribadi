@@ -99,3 +99,19 @@ h1 span,h2 span{color:var(--accent-strong)}
   .navigation a{flex:0 0 auto;white-space:nowrap}
   .project-grid{grid-template-columns:1fr}
 }
+
+
+/* Contact platform icons */
+.contact-link{grid-template-columns:44px minmax(0,1fr) 24px;gap:14px}
+.contact-icon{display:grid;width:40px;height:40px;place-items:center;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.contact-icon svg{display:block;width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.contact-icon-email{color:var(--muted)}
+.contact-icon-instagram{color:#e4405f}
+.contact-icon-instagram .icon-dot{fill:currentColor;stroke:none}
+.contact-icon-github{color:var(--text)}
+.contact-icon-github svg{fill:currentColor;stroke:none}
+.contact-copy{display:grid;min-width:0;gap:3px}
+.contact-copy .contact-label{font-weight:700}
+.contact-copy strong{font-size:.92rem;overflow-wrap:anywhere}
+.contact-arrow{color:var(--accent);text-align:right}
+@media(max-width:480px){.contact-link{grid-template-columns:42px minmax(0,1fr) 18px;gap:10px}}
