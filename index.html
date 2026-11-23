@@ -4,10 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b1020">
-  <meta name="description" content="Profil pribadi M. Rizki Amalludin, pelajar yang tertarik pada teknologi, AI, bisnis, ekonomi, pertanian, dan proyek digital.">
-  <meta property="og:type" content="website">
+  <meta name="description" content="Profil pribadi M. Rizki Amalludin: pelajar yang tertarik pada teknologi, AI, bisnis, ekonomi, pertanian, dan pengembangan proyek digital.">
+  <meta name="author" content="M. Rizki Amalludin">
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="profile">
   <meta property="og:title" content="M. Rizki Amalludin — Profil Pribadi">
-  <meta property="og:description" content="Mengenal M. Rizki Amalludin, minat, proses belajar, dan proyek digital.">
+  <meta property="og:description" content="Mengenal minat, perjalanan belajar, karya, dan proyek digital M. Rizki Amalludin.">
   <meta property="og:image" content="foto-saya.webp">
   <meta name="color-scheme" content="dark light">
   <title>M. Rizki Amalludin — Profil Pribadi</title>
@@ -19,6 +21,7 @@
   <script src="script.js" defer></script>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Lewati ke konten utama</a>
   <header class="site-header">
     <a class="brand" href="#beranda" aria-label="M. Rizki Amalludin, beranda"><img src="logo.svg" alt="" width="180" height="48"></a>
     <nav class="navigation" aria-label="Navigasi utama">
@@ -27,7 +30,7 @@
     <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Aktifkan tema terang" aria-pressed="false"><span aria-hidden="true">☼</span></button>
   </header>
 
-  <main>
+  <main id="main-content">
     <section class="hero section-wrap" id="beranda">
       <div class="hero-copy">
         <p class="eyebrow">PROFIL PRIBADI</p>
@@ -53,10 +56,18 @@
 
     <section class="content-section section-wrap" id="proyek">
       <div class="section-heading"><p class="eyebrow">KARYA</p><h2>Proyek <span>pilihan</span></h2></div>
-      <div class="empty-state">
-        <span class="empty-mark" aria-hidden="true">＋</span>
-        <h3>Ruang untuk karya berikutnya</h3>
-        <p>Belum ada proyek yang dipublikasikan di halaman ini. Bagian ini akan diisi ketika ada karya yang siap ditampilkan, lengkap dengan penjelasan dan tautannya.</p>
+      <div class="project-grid">
+        <article class="project-card">
+          <div class="project-topline"><span class="project-category">PLATFORM DIGITAL</span><span class="project-status">Dalam pengembangan</span></div>
+          <h3>BantuDunia</h3>
+          <p>Gagasan platform digital yang mengumpulkan berbagai alat dan layanan bermanfaat dalam satu tempat, dengan perhatian pada aksesibilitas dan kebutuhan pengguna yang beragam.</p>
+          <a class="project-link" href="https://bantu-dunia.vercel.app/" target="_blank" rel="noopener noreferrer">Kunjungi proyek <span aria-hidden="true">↗</span></a>
+        </article>
+        <article class="project-card project-card-note">
+          <span class="project-category">RUANG BERKEMBANG</span>
+          <h3>Proyek berikutnya</h3>
+          <p>Proyek lain akan ditambahkan setelah memiliki hasil yang siap dipublikasikan, dokumentasi yang jelas, dan tautan yang dapat diakses.</p>
+        </article>
       </div>
     </section>
 
@@ -77,7 +88,6 @@
         <article class="interest-card"><span class="interest-number">04</span><h3>Pertanian</h3><p>Memiliki ketertarikan pada bidang pertanian.</p></article>
       </div>
     </section>
-
 
     <section class="content-section section-wrap" id="prestasi">
       <div class="section-heading"><p class="eyebrow">PENGHARGAAN &amp; PARTISIPASI</p><h2>Prestasi <span>dan sertifikat</span></h2></div>
