@@ -153,8 +153,6 @@
       try {
         await backend.sendPublic(payload);
         form.reset(); setStatus(statusId, t(successKey));
-        if (type === "guestbook") loadGuestbook();
-        if (type === "comment") loadComments();
       } catch (error) { setStatus(statusId, error.message || t("failed"), true); }
       finally { if (button) button.disabled = false; }
     });
@@ -176,7 +174,7 @@
       const observer = new IntersectionObserver(entries => entries.forEach(entry => {
         if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); }
       }), { threshold: 0.08 });
-      $$(".surface-card,.project-card,.post-card,.activity-card,.timeline-item").forEach(node => observer.observe(node));
+      $(".surface-card,.post-card,.timeline-item,.poem-card,.garden-note").forEach(node => observer.observe(node));
     }
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
