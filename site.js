@@ -158,11 +158,8 @@
     $("#theme-toggle")?.addEventListener("click", () => applyTheme(document.documentElement.dataset.theme === "light" ? "dark" : "light"));
     $("#language-toggle")?.addEventListener("click", () => applyLanguage(language === "id" ? "en" : "id"));
     if (page === "home") {
-      loadPoetry(); loadLatestPosts();
       bindPublicForm("contact-form", "contact", "contact-status", ["name","email","subject","message"], "successContact");
     }
-    if (page === "journal") loadJournal();
-    if (page === "article") loadArticle();
     if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       const observer = new IntersectionObserver(entries => entries.forEach(entry => {
         if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); }
