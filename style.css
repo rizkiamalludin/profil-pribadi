@@ -392,3 +392,88 @@ h1,h2,h3,.section-intro,.hero-description{ text-wrap:balance }
   .hero-copy>*,.profile-frame,.loader-inner img,.loader-track span{animation:none!important}
   .has-reveal .reveal{opacity:1;transform:none}
 }
+
+
+/* Refined motion system */
+.hero{position:relative;isolation:isolate}
+.hero::before{
+  content:"";position:absolute;inset:-4% -7%;z-index:-1;pointer-events:none;
+  background:radial-gradient(420px circle at var(--hero-x,50%) var(--hero-y,35%),rgba(197,168,120,.13),transparent 72%);
+  opacity:.9;transition:opacity .35s ease
+}
+.hero-copy{position:relative;z-index:1}
+.hero-copy>*{opacity:0;animation:hero-enter .85s cubic-bezier(.2,.75,.25,1) forwards}
+.hero-copy>.eyebrow{animation-delay:.08s}
+.hero-copy>h1{animation-delay:.16s}
+.hero-copy>.hero-tagline{animation-delay:.24s}
+.hero-copy>.hero-role{animation-delay:.32s}
+.hero-copy>.hero-description{animation-delay:.40s}
+.hero-copy>.hero-actions{animation-delay:.48s}
+.hero-copy>.hero-note{animation-delay:.56s}
+@keyframes hero-enter{from{opacity:0;transform:translate3d(0,24px,0);filter:blur(5px)}to{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}}
+.profile-frame{animation:photo-enter .95s .2s cubic-bezier(.2,.75,.25,1) both,photo-float 7s 1.2s ease-in-out infinite}
+@keyframes photo-enter{from{opacity:0;transform:translate3d(0,30px,0) scale(.94)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+@keyframes photo-float{0%,100%{translate:0 0}50%{translate:0 -8px}}
+.profile-accent{animation:accent-breathe 8s ease-in-out infinite}
+@keyframes accent-breathe{0%,100%{transform:rotate(-4deg) translateY(0)}50%{transform:rotate(-2deg) translateY(-5px)}}
+.profile-photo{transform:perspective(900px) rotateX(var(--photo-rx,0deg)) rotateY(var(--photo-ry,0deg));transition:transform .24s ease-out,filter .35s ease}
+.profile-frame::after{
+  content:"";position:absolute;inset:-7px;z-index:-2;border-radius:inherit;
+  background:conic-gradient(from 30deg,transparent 0 30%,rgba(197,168,120,.45),transparent 58% 100%);
+  filter:blur(13px);opacity:.3;animation:halo-turn 18s linear infinite;pointer-events:none
+}
+@keyframes halo-turn{to{rotate:360deg}}
+.hero-copy h1 span{position:relative}
+.hero-copy h1 span::after{
+  content:"";position:absolute;left:0;bottom:-7px;width:42%;height:2px;
+  background:linear-gradient(90deg,var(--accent),transparent);transform-origin:left;
+  animation:underline-grow 1s .8s cubic-bezier(.2,.7,.2,1) both
+}
+@keyframes underline-grow{from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:1}}
+.section-heading h2{position:relative;display:inline-block}
+.section-heading h2::after{
+  content:"";display:block;width:34px;height:2px;margin-top:13px;border-radius:2px;
+  background:linear-gradient(90deg,var(--accent),transparent);transition:width .75s cubic-bezier(.2,.7,.2,1)
+}
+.section-heading.reveal.visible h2::after{width:92px}
+.has-reveal .reveal{transition-delay:var(--reveal-delay,0ms)}
+.has-reveal .reveal.visible{filter:blur(0)}
+.surface-card,.poem-card,.post-card,.garden-note,.interest-card,.achievement-card{
+  transform-style:preserve-3d;backface-visibility:hidden
+}
+@media(hover:hover) and (pointer:fine){
+  .interest-card:hover,.poem-card:hover,.garden-note:hover,.post-card:hover{
+    transform:perspective(900px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg)) translateY(-5px);
+    border-color:rgba(197,168,120,.48);box-shadow:0 22px 58px rgba(0,0,0,.2)
+  }
+  .button{transform:translate3d(var(--mag-x,0px),var(--mag-y,0px),0);transition:transform .18s ease,background .2s ease,border-color .2s ease}
+  .button:hover{transform:translate3d(var(--mag-x,0px),calc(var(--mag-y,0px) - 2px),0)}
+}
+.route-transition{
+  position:fixed;inset:0;z-index:950;display:grid;place-items:center;padding:24px;
+  background:var(--bg);opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .32s ease,visibility .32s ease
+}
+.route-transition.is-active{opacity:1;visibility:visible;pointer-events:auto}
+.route-transition-inner{display:grid;justify-items:center;gap:24px}
+.route-transition-inner img{width:148px;height:auto;animation:loader-breathe 1.4s ease-in-out infinite}
+.route-transition-line{display:block;width:88px;height:2px;overflow:hidden;background:var(--line);border-radius:99px}
+.route-transition-line::after{content:"";display:block;width:40%;height:100%;background:var(--accent);animation:loader-progress .8s ease-in-out infinite}
+.main-nav a.is-current{color:var(--accent-strong)}
+.main-nav a.is-current::after{content:"";display:block;width:4px;height:4px;margin-left:7px;border-radius:50%;background:var(--accent)}
+.site-header,.surface-card,.poem-card,.post-card,.garden-note,.interest-card,.stack-form input,.stack-form textarea{
+  transition:background-color .35s ease,border-color .35s ease,color .35s ease,box-shadow .35s ease
+}
+@media(max-width:760px){
+  .hero::before{background:radial-gradient(260px circle at 50% 30%,rgba(197,168,120,.10),transparent 75%)}
+  .profile-frame{animation:photo-enter .8s .15s cubic-bezier(.2,.75,.25,1) both}
+  .profile-frame::after{opacity:.18;filter:blur(10px)}
+  .hero-copy h1 span::after{bottom:-4px}
+  .back-to-top{width:44px;height:44px}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero::before,.profile-frame::after,.profile-accent,.section-heading h2::after{animation:none!important;transition:none!important}
+  .hero-copy>*,.profile-frame{animation:none!important;opacity:1;filter:none;transform:none}
+  .route-transition,.route-transition-inner img,.route-transition-line::after{animation:none!important;transition:none!important}
+  .route-transition{display:none}
+}
