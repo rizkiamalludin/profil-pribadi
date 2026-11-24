@@ -477,3 +477,25 @@ h1,h2,h3,.section-intro,.hero-description{ text-wrap:balance }
   .route-transition,.route-transition-inner img,.route-transition-line::after{animation:none!important;transition:none!important}
   .route-transition{display:none}
 }
+
+
+/* Use the exact favicon mark as the loading and page-transition logo */
+.loader-inner img,
+.route-transition-inner img{
+  display:block;
+  width:84px;
+  height:84px;
+  max-width:none;
+  padding:8px;
+  object-fit:contain;
+  border:1px solid rgba(197,168,120,.35);
+  border-radius:22px;
+  background:var(--surface);
+  box-shadow:0 0 0 8px rgba(197,168,120,.045),0 18px 52px rgba(0,0,0,.28);
+  filter:drop-shadow(0 0 18px rgba(197,168,120,.2));
+}
+.loader-inner{gap:20px}
+.route-transition-inner{gap:22px}
+@media(max-width:760px){
+  .loader-inner img,.route-transition-inner img{width:76px;height:76px;padding:7px;border-radius:20px}
+}
