@@ -168,8 +168,9 @@
         });
       }, { threshold: 0.08, rootMargin: "0px 0px -24px 0px" });
     }
-    nodes.forEach(node => {
+    nodes.forEach((node, index) => {
       if (node && !node.classList.contains("reveal")) {
+        node.style.setProperty("--reveal-delay", Math.min(index % 5, 4) * 65 + "ms");
         node.classList.add("reveal");
         revealObserver.observe(node);
       }
@@ -178,6 +179,7 @@
 
 
   function setupRouteTransitions() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const overlay = $("#route-transition");
     if (!overlay) return;
     document.addEventListener("click", event => {
