@@ -1,4 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="icon-title">
+  <title id="icon-title">M. Rizki Amalludin</title>
   <rect width="64" height="64" rx="17" fill="#c5a878"/>
   <path d="M10 47V17h9.2L32 33.2 44.8 17H54v30h-8.2V29.5L32 46.2 18.2 29.5V47z" fill="#17140f"/>
 </svg>
