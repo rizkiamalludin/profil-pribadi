@@ -151,6 +151,68 @@
     });
   }
 
+
+  let revealObserver = null;
+  function watchReveal(nodes) {
+    if (!("IntersectionObserver" in window) || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!revealObserver) {
+      document.documentElement.classList.add("has-reveal");
+      revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: "0px 0px -24px 0px" });
+    }
+    nodes.forEach(node => {
+      if (node && !node.classList.contains("reveal")) {
+        node.classList.add("reveal");
+        revealObserver.observe(node);
+      }
+    });
+  }
+
+  function setupUiEffects() {
+    const loader = $("#page-loader");
+    if (loader) {
+      const delay = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 120 : 520;
+      window.setTimeout(() => {
+        loader.classList.add("is-hidden");
+        window.setTimeout(() => loader.remove(), 520);
+      }, delay);
+      window.addEventListener("pageshow", event => {
+        if (event.persisted) loader.remove();
+      }, { once: true });
+    }
+
+    const progress = $("#scroll-progress");
+    const backToTop = $("#back-to-top");
+    let scheduled = false;
+    const updateScrollUi = () => {
+      if (scheduled) return;
+      scheduled = true;
+      window.requestAnimationFrame(() => {
+        const available = document.documentElement.scrollHeight - window.innerHeight;
+        const amount = available > 0 ? Math.min(1, Math.max(0, window.scrollY / available)) : 0;
+        if (progress) progress.style.setProperty("--scroll-progress", String(amount));
+        if (backToTop) backToTop.classList.toggle("is-visible", window.scrollY > 480);
+        scheduled = false;
+      });
+    };
+    window.addEventListener("scroll", updateScrollUi, { passive: true });
+    window.addEventListener("resize", updateScrollUi, { passive: true });
+    updateScrollUi();
+
+    backToTop?.addEventListener("click", () => {
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+    });
+
+    watchReveal($(".section-heading,.surface-card,.post-card,.timeline-item,.poem-card,.garden-note,.principle-card,.profile-frame,.achievement-card"));
+  }
+
   function init() {
     const year = $("#year"); if (year) year.textContent = String(new Date().getFullYear());
     applyTheme(getStored("profile-theme", "dark"));
@@ -160,12 +222,7 @@
     if (page === "home") {
       bindPublicForm("contact-form", "contact", "contact-status", ["name","email","subject","message"], "successContact");
     }
-    if ("IntersectionObserver" in window && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      const observer = new IntersectionObserver(entries => entries.forEach(entry => {
-        if (entry.isIntersecting) { entry.target.classList.add("visible"); observer.unobserve(entry.target); }
-      }), { threshold: 0.08 });
-      $$(".surface-card,.post-card,.timeline-item,.poem-card,.garden-note").forEach(node => observer.observe(node));
-    }
+    setupUiEffects();
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
