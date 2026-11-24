@@ -5,10 +5,18 @@
   <meta name="robots" content="index,follow"><meta name="description" content="Catatan dan artikel M. Rizki Amalludin.">
   <link rel="canonical" href="https://myprofil-rizki.vercel.app/article.html">
   <meta name="theme-color" content="#0b1020"><title>Artikel — M. Rizki Amalludin</title>
-  <link rel="icon" type="image/png" href="favicon.svg"><link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="stylesheet" href="style.css">
   <script src="backend.js" defer></script><script src="site.js" defer></script>
 </head>
 <body data-page="article">
+  <div class="page-loader" id="page-loader" role="status" aria-live="polite">
+    <div class="loader-inner">
+      <img src="logo.svg" alt="" width="148" height="48">
+      <span class="loader-caption" data-id="Menyiapkan ruang..." data-en="Preparing this space...">Menyiapkan ruang...</span>
+      <span class="loader-track" aria-hidden="true"><span></span></span>
+    </div>
+  </div>
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
   <a class="skip-link" href="#main-content">Lewati ke konten utama</a>
   <header class="site-header">
     <a class="brand" href="index.html" aria-label="M. Rizki Amalludin — beranda"><img src="logo.svg" alt="M. Rizki Amalludin" width="180" height="48"></a>
@@ -20,5 +28,9 @@
     <article id="article-detail" class="surface-card" style="margin-top:20px" aria-live="polite"><p class="muted">Memuat artikel…</p></article>
   </main>
   <footer class="site-footer section-wrap"><p>© <span id="year"></span> M. Rizki Amalludin</p><a href="admin.html">Admin</a></footer>
+
+  <button class="back-to-top" id="back-to-top" type="button" aria-label="Kembali ke atas" title="Kembali ke atas">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6M12 8v11"/></svg>
+  </button>
 </body>
 </html>
