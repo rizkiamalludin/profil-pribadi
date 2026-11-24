@@ -77,6 +77,7 @@
         card.append(label, title, body, date);
         container.append(card);
       });
+      watchReveal($$(".poem-card", container));
     } catch (error) {
       console.warn(error);
       container.replaceChildren(createText("p", "empty-state", t("unavailable")));
@@ -101,6 +102,7 @@
       link.textContent = language === "en" ? "Read article →" : "Baca catatan →";
       card.append(link); container.append(card);
     });
+    watchReveal($$(".post-card", container));
   }
   async function loadLatestPosts() {
     const container = $("#latest-posts");
@@ -174,10 +176,112 @@
     });
   }
 
+
+  function setupRouteTransitions() {
+    const overlay = $("#route-transition");
+    if (!overlay) return;
+    document.addEventListener("click", event => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const link = event.target.closest("a[href]");
+      if (!link || link.target || link.hasAttribute("download")) return;
+      const destination = new URL(link.href, window.location.href);
+      if (destination.origin !== window.location.origin) return;
+      if (destination.pathname === window.location.pathname && destination.search === window.location.search) return;
+      if (/\.(pdf|zip|png|jpe?g|webp|svg|mp4|mp3)$/i.test(destination.pathname)) return;
+      event.preventDefault();
+      overlay.classList.add("is-active");
+      document.documentElement.classList.add("is-navigating");
+      window.setTimeout(() => window.location.assign(destination.href), 360);
+    });
+  }
+
+  function setupPointerMotion() {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    if (reduced || !finePointer) return;
+
+    const hero = $(".hero");
+    const photo = $(".profile-photo");
+    if (hero) {
+      hero.addEventListener("pointermove", event => {
+        const rect = hero.getBoundingClientRect();
+        hero.style.setProperty("--hero-x", (event.clientX - rect.left) + "px");
+        hero.style.setProperty("--hero-y", (event.clientY - rect.top) + "px");
+      }, { passive: true });
+      hero.addEventListener("pointerleave", () => {
+        hero.style.setProperty("--hero-x", "50%");
+        hero.style.setProperty("--hero-y", "35%");
+      });
+    }
+
+    const photoFrame = $(".profile-frame");
+    if (photoFrame && photo) {
+      photoFrame.addEventListener("pointermove", event => {
+        const rect = photoFrame.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - .5;
+        const y = (event.clientY - rect.top) / rect.height - .5;
+        photo.style.setProperty("--photo-rx", (-y * 4).toFixed(2) + "deg");
+        photo.style.setProperty("--photo-ry", (x * 5).toFixed(2) + "deg");
+      }, { passive: true });
+      photoFrame.addEventListener("pointerleave", () => {
+        photo.style.setProperty("--photo-rx", "0deg");
+        photo.style.setProperty("--photo-ry", "0deg");
+      });
+    }
+
+    $$(".button").forEach(button => {
+      button.addEventListener("pointermove", event => {
+        const rect = button.getBoundingClientRect();
+        const x = (event.clientX - rect.left - rect.width / 2) / rect.width;
+        const y = (event.clientY - rect.top - rect.height / 2) / rect.height;
+        button.style.setProperty("--mag-x", (x * 5).toFixed(1) + "px");
+        button.style.setProperty("--mag-y", (y * 4).toFixed(1) + "px");
+      }, { passive: true });
+      button.addEventListener("pointerleave", () => {
+        button.style.setProperty("--mag-x", "0px");
+        button.style.setProperty("--mag-y", "0px");
+      });
+    });
+
+    $$(".interest-card,.poem-card,.garden-note,.post-card").forEach(card => {
+      card.addEventListener("pointermove", event => {
+        const rect = card.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - .5;
+        const y = (event.clientY - rect.top) / rect.height - .5;
+        card.style.setProperty("--tilt-x", (-y * 2.2).toFixed(2) + "deg");
+        card.style.setProperty("--tilt-y", (x * 2.2).toFixed(2) + "deg");
+      }, { passive: true });
+      card.addEventListener("pointerleave", () => {
+        card.style.setProperty("--tilt-x", "0deg");
+        card.style.setProperty("--tilt-y", "0deg");
+      });
+    });
+  }
+
+  function setupActiveNavigation() {
+    if (!("IntersectionObserver" in window)) return;
+    const navLinks = $$(".main-nav a[href^='#']");
+    if (!navLinks.length) return;
+    const sections = navLinks.map(link => $(link.getAttribute("href"))).filter(Boolean);
+    if (!sections.length) return;
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach(link => {
+          const active = link.getAttribute("href") === "#" + entry.target.id;
+          link.classList.toggle("is-current", active);
+          if (active) link.setAttribute("aria-current", "location");
+          else link.removeAttribute("aria-current");
+        });
+      });
+    }, { rootMargin: "-32% 0px -58% 0px", threshold: 0 });
+    sections.forEach(section => observer.observe(section));
+  }
+
   function setupUiEffects() {
     const loader = $("#page-loader");
     if (loader) {
-      const delay = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 120 : 520;
+      const delay = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 100 : 760;
       window.setTimeout(() => {
         loader.classList.add("is-hidden");
         window.setTimeout(() => loader.remove(), 520);
@@ -210,7 +314,10 @@
       window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
     });
 
-    watchReveal($(".section-heading,.surface-card,.post-card,.timeline-item,.poem-card,.garden-note,.principle-card,.profile-frame,.achievement-card"));
+    watchReveal($$(".section-heading,.surface-card,.post-card,.timeline-item,.poem-card,.garden-note,.principle-card,.achievement-card"));
+    setupRouteTransitions();
+    setupPointerMotion();
+    setupActiveNavigation();
   }
 
   function init() {
