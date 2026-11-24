@@ -27,6 +27,14 @@
   </script>
 </head>
 <body data-page="home">
+  <div class="page-loader" id="page-loader" role="status" aria-live="polite">
+    <div class="loader-inner">
+      <img src="logo.svg" alt="" width="148" height="48">
+      <span class="loader-caption" data-id="Menyiapkan ruang..." data-en="Preparing this space...">Menyiapkan ruang...</span>
+      <span class="loader-track" aria-hidden="true"><span></span></span>
+    </div>
+  </div>
+  <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
   <a class="skip-link" href="#main-content" data-id="Lewati ke konten utama" data-en="Skip to main content">Lewati ke konten utama</a>
   <header class="site-header">
     <a class="brand" href="#beranda" aria-label="M. Rizki Amalludin — beranda"><img src="logo.svg" alt="M. Rizki Amalludin" width="150" height="48"></a>
@@ -179,5 +187,9 @@
     </section>
   </main>
   <footer class="site-footer section-wrap"><p>© <span id="year"></span> M. Rizki Amalludin</p><span data-id="Dibuat dengan rasa ingin tahu." data-en="Made with curiosity.">Dibuat dengan rasa ingin tahu.</span><a href="#beranda" data-id="Kembali ke atas ↑" data-en="Back to top ↑">Kembali ke atas ↑</a></footer>
+
+  <button class="back-to-top" id="back-to-top" type="button" aria-label="Kembali ke atas" title="Kembali ke atas">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6M12 8v11"/></svg>
+  </button>
 </body>
 </html>
